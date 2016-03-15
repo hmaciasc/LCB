@@ -53,7 +53,7 @@ public class NewServlet extends HttpServlet {
                 if (cart == null) {
                     System.out.println("CARRITO NUEVO");
                     cart = new ShoppingCart();
-                    cart.initialize();
+                    //cart.initialize();
                     session.setAttribute("cart", cart);
                 }
                 

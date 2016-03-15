@@ -27,23 +27,23 @@ public class AddToCartCommand extends FrontCommand{
     
     @Override
     public void process() {
-        HttpSession session = request.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        Integer isbn = Integer.parseInt(request.getParameter("bookIsbn"));
         
-        BookFacadeLocal books;
         try {
+            BookFacadeLocal books;
+            HttpSession session = request.getSession();
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            Integer isbn = Integer.parseInt(request.getParameter("bookIsbn"));
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             List<Book> bookList = books.findAll();
-
+            
             for (Book book : bookList) {
                 if (book.getIsbn().equals(isbn)) {
                     cart.addBoookToCart(book);
-                    session.setAttribute("cart", cart);
-                    break;
+                    //session.setAttribute("cart", cart);
                 }
             }
-            forward("/NewServlet");
+            //forward("/NewServlet");
+            forward("/indexView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(AddToCartCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

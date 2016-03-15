@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
     @NamedQuery(name = "Book.findByPublisher", query = "SELECT b FROM Book b WHERE b.publisher = :publisher"),
-    @NamedQuery(name = "Book.findByPublishDate", query = "SELECT b FROM Book b WHERE b.publishDate = :publishDate"),
+    @NamedQuery(name = "Book.findByPublishyear", query = "SELECT b FROM Book b WHERE b.publishyear = :publishyear"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
     @NamedQuery(name = "Book.findByCopy", query = "SELECT b FROM Book b WHERE b.copy = :copy"),
     @NamedQuery(name = "Book.findByValue", query = "SELECT b FROM Book b WHERE b.value = :value"),
@@ -54,9 +51,8 @@ public class Book implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PUBLISHER")
     private String publisher;
-    @Column(name = "PUBLISH_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date publishDate;
+    @Column(name = "PUBLISHYEAR")
+    private Integer publishyear;
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
@@ -114,12 +110,12 @@ public class Book implements Serializable {
         this.publisher = publisher;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public Integer getPublishyear() {
+        return publishyear;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setPublishyear(Integer publishyear) {
+        this.publishyear = publishyear;
     }
 
     public int getPrice() {

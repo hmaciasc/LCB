@@ -55,8 +55,8 @@
             </div>
         </div>
         <div class='books'>
-            <% ArrayList<Book> books = (ArrayList) request.getAttribute("books"); 
-                if (books !=  null || !books.isEmpty()) {
+            <% ArrayList<Book> books = (ArrayList) session.getAttribute("books"); 
+                if (books !=  null && !books.isEmpty()) {
                     for (Book book : books){
             %>
             <div class='book wrapper'>

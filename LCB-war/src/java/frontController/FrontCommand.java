@@ -22,6 +22,7 @@ abstract class FrontCommand {
     abstract public void process();
     
     public void forward(String target) throws ServletException, IOException{
+        System.out.println("target: " + target);
         RequestDispatcher requestDispatcher = context.getRequestDispatcher(target);
         requestDispatcher.forward(request, response);
     }

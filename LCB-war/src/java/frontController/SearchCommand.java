@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,6 +27,7 @@ public class SearchCommand extends FrontCommand {
     @Override
     public void process() {
         try {
+            HttpSession session = request.getSession();
             BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             List<Book> bookList = books.findAll();
             List<Book> list = new ArrayList<>();
@@ -43,7 +45,7 @@ public class SearchCommand extends FrontCommand {
                     }
                 }
             }
-            request.setAttribute("books", list);
+            session.setAttribute("searchResult", list);
             forward("/searchView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);

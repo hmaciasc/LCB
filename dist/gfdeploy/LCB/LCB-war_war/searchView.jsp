@@ -32,7 +32,7 @@
         <h1>Resultado de la búsqueda: </h1>
         <div class='wrapper'>
             <% 
-                ArrayList<Book> books = (ArrayList) request.getAttribute("books");
+                ArrayList<Book> books = (ArrayList) session.getAttribute("searchResult");
                 for (Book book : books) {
             %>
             <div class='book'>

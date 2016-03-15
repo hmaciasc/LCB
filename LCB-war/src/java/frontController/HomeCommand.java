@@ -29,27 +29,28 @@ public class HomeCommand extends FrontCommand{
     
     @Override
     public void process() {
-        try (PrintWriter out = response.getWriter()){
+        try {
             BookFacadeLocal books;
+            books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             HttpSession session = request.getSession(true);
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new ShoppingCart();
-                cart.initialize();
+                //cart.initialize();
                 session.setAttribute("cart", cart);
             }
 
-            books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             List<Book> bookList = books.findAll();
             ArrayList<Book> list= new ArrayList<>();
             for (Book book : bookList) {
                 list.add(book);
             }
-            request.setAttribute("books", list);
+            //request.setAttribute("books", list);
+            session.setAttribute("books", list);
             
             forward("/indexView.jsp");
             } catch (ServletException | IOException | NamingException ex) {
-            Logger.getLogger(HomeCommand.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HomeCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

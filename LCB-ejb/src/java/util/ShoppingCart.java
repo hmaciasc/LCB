@@ -21,31 +21,36 @@ public class ShoppingCart implements ShoppingCartLocal {
     private double cost;
 
     public ShoppingCart() {
-        initialize();
+        this.bookList = new ArrayList<>();
+        this.cost = 0.0;
+        //initialize();
     }
     
     
     
     @Override
     public void initialize() {
-        this.bookList = new ArrayList<Book>();
+        this.bookList = new ArrayList<>();
         this.cost = 0.0;
     }
 
     @Override
     public void addBoookToCart(Book book) {
-        bookList.add(book);
-        System.out.println("PRECIO: "+ book.getPrice());
-        System.out.println("Tamaño: " + bookList.size());
-        cost += (double) book.getPrice();
+        if (book != null) {
+            bookList.add(book);
+            System.out.println("PRECIO: "+ book.getPrice());
+            System.out.println("Tamaño: " + bookList.size());
+            cost += book.getPrice();
+        }
     }
 
     @Override
     public void removeFromCart(String title) {
         for (Book book : bookList) {
             if (book.getTitle().equals(title)) {
+                cost -= book.getPrice();
                 bookList.remove(book);
-                cost -= (double) book.getPrice();
+                break;
             }
         }
     }

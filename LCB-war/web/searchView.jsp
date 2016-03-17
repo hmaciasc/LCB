@@ -40,11 +40,20 @@
                 <h2> <% out.print("Autor: " + book.getAuthor()+ "<br>"); %> </h2>
                 <h2> <% out.print("Editorial: " + book.getPublisher()+ "<br>"); %> </h2>
                 <h2> <% out.print("Precio: " + book.getPrice()); %> € </h2>
+                <% if(book.getCopy() > 0){ %>
                 <form action='FrontControllerServlet'>
                     <input type='hidden' value='AddToCartCommand' name='command'>
                     <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
                     <input type='submit' value='Añadir al carrito'>
-                </form><br>
+                </form>
+                    <% }else{ %>
+                    <form action='FrontControllerServlet'>
+                    <input type='hidden' value='ReserveBookCommand' name='command'>
+                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
+                    <input type='submit' value='Reservar'>
+                </form>
+                    <% } %>
+                <br>
             </div>
                     <% } %>
         </div>

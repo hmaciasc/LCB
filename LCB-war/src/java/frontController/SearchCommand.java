@@ -27,8 +27,8 @@ public class SearchCommand extends FrontCommand {
     @Override
     public void process() {
         try {
-            HttpSession session = request.getSession();
             BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
+            HttpSession session = request.getSession();
             List<Book> bookList = books.findAll();
             List<Book> list = new ArrayList<>();
 
@@ -38,9 +38,15 @@ public class SearchCommand extends FrontCommand {
                         list.add(book);
                     }
                 }
-            } else {
+            } else if (request.getParameter("select").equals("1")) {
                 for (Book book : bookList) {
                     if (book.getAuthor().equals(request.getParameter("search"))) {
+                        list.add(book);
+                    }
+                }
+            }else{
+                for (Book book : bookList) {
+                    if (book.getCategory().equals(request.getParameter("search"))) {
                         list.add(book);
                     }
                 }

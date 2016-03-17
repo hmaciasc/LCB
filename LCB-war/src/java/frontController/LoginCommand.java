@@ -24,6 +24,7 @@ public class LoginCommand extends FrontCommand {
             if(client != null && request.getParameter("password").equals(client.getPassword())){
                 list.add(client);
                 session.setAttribute("session", client.getMail());
+                session.setAttribute("client", client);
             }else{
                 session.setAttribute("session", "Error al autentificarse.");
             }

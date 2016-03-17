@@ -30,7 +30,7 @@
         <div class='paymentInfoWrapper'>
             <form action='FrontControllerServlet'>
                 <% //session.setAttribute("cart", null); %>
-                <input type='hidden' value='PaymentDoneCommand' name='command'>
+                <input type='hidden' value='ShoppingCommand' name='command'>
                 <p> Email:  </p><input type='email' name='email'>
                 <p> Contraseña: </p><input type='password' name='password'><br>
                 <input type='submit' value='Realizar pago'>

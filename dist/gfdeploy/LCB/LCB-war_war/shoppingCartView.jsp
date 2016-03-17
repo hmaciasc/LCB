@@ -3,6 +3,7 @@
     Created on : 13-mar-2016, 12:12:04
     Author     : maxi
 --%>
+<%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="controller.BookFacade"%>
 <%@page import="javax.ejb.EJB"%>
@@ -45,12 +46,29 @@
                         <% } %>
                     <% } %>
         </div>
+        
+        <div class='directionWrapper'>
+            <h3> Elija la dirección de envío </h3>
+            <form action='FrontControllerServlet'>
+                <select name='directionSelector'>
+                    <option value='Dir1' selected='selected'> 
+                        <% 
+                            Client client = (Client) session.getAttribute("client");
+                            if (client == null) {
+                                    out.print("Inicie sesión");
+                            }else{
+                            out.print(client.getAddress1()); %> </option>
+                    <option value='Dir2'> <% out.print(client.getAddress2()); }%> </option>
+                </select>
+            </form>
+        </div>
+        
         <div class='priceWrapper'>
             <h3> Total a pagar: <% out.print(cart.getCost()); %> € </h3>
             <form action='FrontControllerServlet'>
                 <select name='paySelector'>
                     <option value='Paypal' selected='selected'>Paypal</option>
-                    <option value='Banco'>Banco</option>
+                    <option value='Banco'>Tarjeta de Crédito/Débito</option>
                 </select>
                 <input type='hidden' value='PayCommand' name='command'>
                 <input type='hidden' value='<% out.print(cart.getCost()); %>' name='price'>

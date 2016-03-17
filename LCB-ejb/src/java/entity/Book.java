@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author maxi
+ * @author javi
  */
 @Entity
 @Table(name = "BOOK")
@@ -29,12 +29,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
     @NamedQuery(name = "Book.findByPublisher", query = "SELECT b FROM Book b WHERE b.publisher = :publisher"),
-    @NamedQuery(name = "Book.findByPublishyear", query = "SELECT b FROM Book b WHERE b.publishyear = :publishyear"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
     @NamedQuery(name = "Book.findByCopy", query = "SELECT b FROM Book b WHERE b.copy = :copy"),
     @NamedQuery(name = "Book.findByValue", query = "SELECT b FROM Book b WHERE b.value = :value"),
-    @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn")})
+    @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn"),
+    @NamedQuery(name = "Book.findByPublishyear", query = "SELECT b FROM Book b WHERE b.publishyear = :publishyear"),
+    @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category")})
 public class Book implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -51,8 +53,6 @@ public class Book implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PUBLISHER")
     private String publisher;
-    @Column(name = "PUBLISHYEAR")
-    private Integer publishyear;
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRICE")
@@ -69,6 +69,11 @@ public class Book implements Serializable {
     @NotNull
     @Column(name = "ISBN")
     private Integer isbn;
+    @Column(name = "PUBLISHYEAR")
+    private Integer publishyear;
+    @Size(max = 50)
+    @Column(name = "CATEGORY")
+    private String category;
 
     public Book() {
     }
@@ -110,14 +115,6 @@ public class Book implements Serializable {
         this.publisher = publisher;
     }
 
-    public Integer getPublishyear() {
-        return publishyear;
-    }
-
-    public void setPublishyear(Integer publishyear) {
-        this.publishyear = publishyear;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -150,6 +147,22 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
+    public Integer getPublishyear() {
+        return publishyear;
+    }
+
+    public void setPublishyear(Integer publishyear) {
+        this.publishyear = publishyear;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -172,7 +185,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Book[ isbn=" + isbn + " ]";
+        return "controller.Book[ isbn=" + isbn + " ]";
     }
     
 }

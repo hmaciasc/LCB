@@ -17,15 +17,12 @@
         <div class='button'>
             <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
         </div>
-        <h1>Customer list</h1>
-        <%
-            String email = (String) session.getAttribute("session");
-            out.print("E-Mail: " + email + "<br>");
-            ArrayList<Client> clients = (ArrayList) request.getAttribute("clients");
-            for(Client client: clients){
-                out.print("Cliente: " + client);
-            }
-
-        %>
+        <% 
+            if(session.getAttribute("session") == null){
+                out.print("Error en la autentificación.");
+            }else{ %>
+                <h1>Bienvenido <%=session.getAttribute("session")%>!</h1>
+            <% } %>
+            <a href='FrontControllerServlet'>Volver a la página principal</a>
     </body>
 </html>

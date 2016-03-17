@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author maxi
+ * @author javi
  */
 @Local
 public interface BookFacadeLocal {

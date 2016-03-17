@@ -22,7 +22,9 @@
             <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
         </div>
         <div class='login wrapper'>
-            <% if(session.getAttribute("session") == null){ %>
+            <% 
+                if(session.getAttribute("session") == null){ 
+            %>
                     <form action='FrontControllerServlet'>
                     <input type='hidden' value='LoginCommand' name='command'>
                     E-Mail: <input class='search rounded' type='email' name='user'><br>
@@ -30,7 +32,9 @@
                     <input type='submit' value='Entrar'>
                     </form>
                 <% }else{ %>
-                E-mail: <% out.print(session.getAttribute("session")); %>
+                
+                Usuario: <% out.print(session.getAttribute("session")); %>
+                
             <% } %>
         </div>
         <div class='search wrapper'>
@@ -40,6 +44,7 @@
                 <select name="select">
                     <option selected="selected" value="0">Título</option>
                     <option value="1">Autor</option>
+                    <option value="2">Categoría</option>
                 </select>
                 <input type='submit' value='Buscar'>
             </form>
@@ -64,7 +69,8 @@
                 <p> <% out.print(book.getAuthor()); %> </p>
                 <p> <% out.print(book.getCopy()); %> copias </p>
                 <p> <% out.print(book.getPrice()); %> €</p>
-                    <%  if (book.getCopy() == 0) {   %>
+                <p> <% out.print(book.getCategory()); %> </p>
+                    <%  if (book.getCopy() <= 0) {   %>
                         <form action='FrontControllerServlet'>
                             <input type='hidden' value='ReserveBookCommand' name='command'>
                             <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>

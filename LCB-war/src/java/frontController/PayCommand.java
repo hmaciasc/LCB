@@ -30,7 +30,7 @@ public class PayCommand extends FrontCommand{
             if (method.equals("Paypal")) {
                 forward("/paypalPaymentView.jsp");
             } else {
-                forward("/BankPaymentView.jsp");
+                forward("/creditCardPaymentView.jsp");
             }
         } catch (ServletException | IOException ex) {
             Logger.getLogger(PayCommand.class.getName()).log(Level.SEVERE, null, ex);

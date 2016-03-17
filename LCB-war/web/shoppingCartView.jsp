@@ -42,6 +42,11 @@
                 <p> <% out.print(book.getAuthor()); %> </p>
                 <p> <% out.print(book.getCopy()); %> copias </p>
                 <p> <% out.print(book.getPrice()); %> €</p>
+                <form action="FrontControllerServlet">
+                    <input type="hidden" name="command" value="DeleteFromCart" />
+                    <input type="hidden" name="bookTitle" value="<%out.print(book.getTitle());%>" />
+                    <input type="submit" value="eliminar" />
+                </form>
             </div>
                         <% } %>
                     <% } %>

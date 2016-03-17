@@ -41,7 +41,6 @@ public class AddToCartCommand extends FrontCommand{
                     //session.setAttribute("cart", cart);
                 }
             }
-            //forward("/NewServlet");
             forward("/indexView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(AddToCartCommand.class.getName()).log(Level.SEVERE, null, ex);

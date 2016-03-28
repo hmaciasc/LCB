@@ -21,21 +21,14 @@ public class ShoppingCommand extends FrontCommand {
             HttpSession session = request.getSession(true);
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
-            List<Book> bookList = books.findAll();
-            
             for (Book book : cart.getCart()) {
-                for (Book bookBD : bookList) {
-                    if (bookBD.getIsbn() == book.getIsbn()) {
-                        Book newBook = book;
-                        newBook.setCopy(book.getCopy() - 1);
-                        books.edit(newBook);
-                    }
+                Book bookBD = books.find(book.getIsbn());
+                if (bookBD.getIsbn() != null) {
+                    bookBD.setCopy(bookBD.getCopy() - 1);
+                    books.edit(bookBD);
                 }
             }
-            
             cart.resetCart();
-
-            //RequestDispatcher dispatcher = context.getRequestDispatcher("/paypalPaymentView.jsp");
             forward("/FrontControllerServlet?command=HomeCommand");
         } catch (ServletException | IOException ex) {
             

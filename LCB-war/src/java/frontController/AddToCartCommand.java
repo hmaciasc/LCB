@@ -34,7 +34,10 @@ public class AddToCartCommand extends FrontCommand{
             Integer isbn = Integer.parseInt(request.getParameter("bookIsbn"));
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             List<Book> bookList = books.findAll();
-            
+            //Tratarlo como HashMap<Book, Integer>, donde integer es el numero 
+            //de copias/contador de los libros que se pueden añadir al carrito
+            //cuando llegue a 0, cambiar el botón por reservar, o que no siga 
+            //metiendo mas en el carrito
             for (Book book : bookList) {
                 if (book.getIsbn().equals(isbn)) {
                     cart.addBoookToCart(book);

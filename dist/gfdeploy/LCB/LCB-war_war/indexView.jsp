@@ -21,6 +21,13 @@
         <div class='button'>
             <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
         </div>
+        <div class='button'>
+            <%
+                if(session.getAttribute("session") == null){ 
+            %>
+                <h1><a href='registerView.jsp'> Regístrate!</a></h1>
+            <% } %>
+        </div>
         <div class='login wrapper'>
             <% 
                 if(session.getAttribute("session") == null){ 

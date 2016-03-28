@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class='booksWrapper'>
-            <% ArrayList<Book> books = (ArrayList) request.getAttribute("cartBooks"); 
+            <% ArrayList<Book> books = (ArrayList) session.getAttribute("cartBooks"); 
                 if (books !=  null || !books.isEmpty()) {
                     for (Book book : books){
             %>

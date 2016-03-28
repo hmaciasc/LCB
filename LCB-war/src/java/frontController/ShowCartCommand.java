@@ -26,7 +26,7 @@ public class ShowCartCommand extends FrontCommand{
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         ArrayList<Book> cartBooks = (ArrayList) cart.getCart();
-        request.setAttribute("cartBooks", cartBooks);
+        session.setAttribute("cartBooks", cartBooks);
         
         try {
             forward("/shoppingCartView.jsp");

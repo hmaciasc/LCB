@@ -54,7 +54,7 @@ public class ReserveBookCommand extends FrontCommand {
     
     private void addNewReservation () {
         Random rnd = new Random();
-        Reservation reservation = new Reservation(new Short("" + rnd.nextInt(10) + ""), user, book.getTitle(), new Date());
+        Reservation reservation = new Reservation(null , user, book.getTitle(), new Date());
         reservations.create(reservation);
         reservationList.add(reservation);
     }

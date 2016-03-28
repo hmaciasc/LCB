@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author maxi
+ * @author noe_s_000
  */
 @Entity
 @Table(name = "RESERVATION")
@@ -34,12 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reservation.findByBook", query = "SELECT r FROM Reservation r WHERE r.book = :book"),
     @NamedQuery(name = "Reservation.findByReservationdate", query = "SELECT r FROM Reservation r WHERE r.reservationdate = :reservationdate")})
 public class Reservation implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "RESERVATIONID")
-    private Short reservationid;
+    private Integer reservationid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 60)
@@ -59,22 +62,22 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(Short reservationid) {
+    public Reservation(Integer reservationid) {
         this.reservationid = reservationid;
     }
 
-    public Reservation(Short reservationid, String username, String book, Date reservationdate) {
+    public Reservation(Integer reservationid, String username, String book, Date reservationdate) {
         this.reservationid = reservationid;
         this.username = username;
         this.book = book;
         this.reservationdate = reservationdate;
     }
 
-    public Short getReservationid() {
+    public Integer getReservationid() {
         return reservationid;
     }
 
-    public void setReservationid(Short reservationid) {
+    public void setReservationid(Integer reservationid) {
         this.reservationid = reservationid;
     }
 

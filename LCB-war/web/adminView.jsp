@@ -4,6 +4,7 @@
     Author     : Famïa
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="entity.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,34 +29,38 @@
         
         <h2>Eliminar libro</h2>
 
-        <form action='FrontControllerServlet'>
+        <%--<form action='FrontControllerServlet'>
             Inserte el ISBN del libro que quiere eliminar: <input type='text' name='isbn2'>
             <input type='hidden' name='command' value='RemoveFromDataBaseCommand'>
             <input type='submit' name='button' value='Eliminar'><br>
-        </form>
-        
-        <h2>Modificar Campo de libro</h2>
-        
-        <%--<form action='FrontControllerServlet'>
-            <table>
-                <% for(int i=0; i<10; i++){ %>
-                    <tr>
-                        <td>Libro: </td>
-                        <td>Autor: </td>
-                        <td>Editorial:</td>
-                        <td>Año de publicación:</td>
-                        <td>Precio:</td>
-                        <td>Nº de ejemplares:</td>
-                        <td>ISBN:</td>
-                        <td><input type='submit' name='eliminar' value='Eliminar'></td>
-                    </tr>
-                <%}%>
-            </table>
-            <input type='hidden' name='command' value='ModifyInDataBaseCommand'>
         </form>--%>
         
+        <div class='books'>
+            <% ArrayList<Book> books = (ArrayList) session.getAttribute("books"); 
+                if (books !=  null && !books.isEmpty()) {
+                    for (Book book : books){
+            %>
+            <div class='book wrapper'>
+                <p> <b>Título:</b> <% out.print(book.getTitle()); %>.
+                <b>Autor:</b> <% out.print(book.getAuthor()); %>.
+                <b>Editorial:</b> <% out.print(book.getPublisher()); %>.
+                <b>Año publicación:</b> <% out.print(book.getPublishyear()); %>.
+                <b>Nº ejemplares:</b> <% out.print(book.getCopy()); %>.
+                <b>Precio:</b> <% out.print(book.getPrice()); %> € .
+                <b>Categoría:</b> <% out.print(book.getCategory()); %>.
+                <b>ISBN:</b> <% out.print(book.getIsbn()); %>. 
+                <form action='FrontControllerServlet'>
+                    <input type='hidden' value='RemoveFromDataBaseCommand' name='command'>
+                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='isbn2'>
+                    <input type='submit' value='Eliminar'>
+                </form></p>
+            </div>
+                    <% } %>
+                <% } %>
+        </div>
+
         
-        
+        <h2>Modificar Campo de libro</h2>
         
         <form action='FrontControllerServlet'>
             Inserte el ISBN del libro que quiere modificar: <input type='text' name='isbn3'><br>

@@ -185,7 +185,14 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "controller.Book[ isbn=" + isbn + " ]";
+        return "entity.Book[ isbn=" + isbn + " ]";
     }
-    
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
 }

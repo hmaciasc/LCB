@@ -4,6 +4,7 @@
     Author     : maxi
 --%>
 
+<%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="javax.ejb.EJB"%>
 <%@page import="java.util.List"%>
@@ -20,6 +21,13 @@
     <body>
         <div class='button'>
             <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
+        </div>
+        <div>
+            <%
+            Client client = (Client)session.getAttribute("client");
+            if(client != null && client.getIsadmin() == 1){ %>
+            <a href='adminView.jsp'>Administrar Base de Datos</a>
+            <% } %>
         </div>
         <div class='button'>
             <%

@@ -36,7 +36,7 @@ public class AddToCartCommand extends FrontCommand{
             Book bookDB = books.find(isbn);
             if(bookDB != null){
                 if(cart.getCart().isEmpty()){
-                    cart.addBoookToCart(bookDB);
+                    cart.addBookToCart(bookDB);
                 }else{
                     int index = -1;
                     for (int i = 0; i < cart.getCart().size(); i++) {
@@ -45,13 +45,13 @@ public class AddToCartCommand extends FrontCommand{
                         }
                     }
                     if(index == -1){
-                        cart.addBoookToCart(bookDB);
+                        cart.addBookToCart(bookDB);
                     }else{
                         Book modBook = cart.getCart().get(index);
-                        Book chachiBook = (Book) modBook.clone();
-                        chachiBook.setCopy(modBook.getCopy() - 1);
-                        if(chachiBook.getCopy() > 0)
-                            cart.addBoookToCart(chachiBook);
+                        Book clonedBook = (Book) modBook.clone();
+                        clonedBook.setCopy(modBook.getCopy() - 1);
+                        if(clonedBook.getCopy() > 0)
+                            cart.addBookToCart(clonedBook);
                     }
                 }
             }

@@ -35,7 +35,7 @@ public class ShoppingCart implements ShoppingCartLocal {
     }
 
     @Override
-    public void addBoookToCart(Book book) {
+    public void addBookToCart(Book book) {
         if (book != null) {
             bookList.add(book);
             System.out.println("PRECIO: "+ book.getPrice());

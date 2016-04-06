@@ -17,7 +17,7 @@ import javax.ejb.Local;
 public interface ShoppingCartLocal {
     
     public void initialize();
-    public void addBoookToCart(Book book);
+    public void addBookToCart(Book book);
     public void removeFromCart(String title);
     public List<Book> getCart();
     public void resetCart();

@@ -18,3 +18,10 @@ img {
 .container{
     border: 1px solid #cccccc;
 }
+
+.book {
+    height: 500px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    text-align: center;
+}

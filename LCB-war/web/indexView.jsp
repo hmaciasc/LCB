@@ -44,12 +44,12 @@
             <div class='row center-block'>
                 <div class='col-lg-5'>
                     <% if(session.getAttribute("session") == null){ %>
-                        <form action='FrontControllerServlet' class="form-horizontal" role='form'>
+                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type='hidden' value='LoginCommand' name='command'>
                             <label for="user">E-mail:</label> 
-                            <input class='form-control'  type='email' name='user'><br>
+                            <input class='form-control' type='email' name='user'><br>
                             <label for="password">Password:</label> 
-                            <input class='form-control'  type='password' name='password'>
+                            <input class='form-control' type='password' name='password'>
                             <button type='submit' class='btn btn-default'>Entrar</button>
                         </form>
                     <% }else{ %>
@@ -57,7 +57,7 @@
                     <% } %>
                 </div>
                 <div class='col-lg-5'>
-                    <form action='FrontControllerServlet' class="form-horizontal" role='form'>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <input type='hidden' value='SearchCommand' name='command'>
                         <label for="search">Buscar: </label> 
                         <input class='form-control' type='text' name='search'><br>
@@ -73,33 +73,33 @@
                 <div class='col-lg-1 pull-right'>
                     <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
                     <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
-                    <form action='FrontControllerServlet' class="form-horizontal" role='form'>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <input type='hidden' value='ShowCartCommand' name='command'>
                         <button type='submit' class='btn btn-default'>Ver Carrito</button>
                     </form>
                 </div>
             </div>
-            <div class='container row center-block'>
+            <div class='container row-fluid center-block'>
                 <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
                     if (books !=  null && !books.isEmpty()) {
                         for (Book book : books){
                 %>
                 <div class='col-lg-4'>
                     <div class='book'>
-                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive" width="304" height="236">
+                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive">
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
                         <p> <% out.print(book.getCopy()); %> copias </p>
                         <p> <% out.print(book.getPrice()); %> €</p>
                         <p> <% out.print(book.getCategory()); %> </p>
                             <%  if (book.getCopy() <= 0) {   %>
-                                <form action='FrontControllerServlet' class="form-horizontal" role='form'>
+                                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                     <input type='hidden' value='ReserveBookCommand' name='command'>
                                     <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
                                     <button type='submit' class='btn btn-warning'>Reservar</button>
                                 </form><br>
                             <%  } else {   %>
-                            <form action='FrontControllerServlet' class="form-horizontal" role='form'>
+                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                 <input type='hidden' value='AddToCartCommand' name='command'>
                                 <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
                                 <button type='submit' class='btn btn-primary'>Añadir al carrito</button>

@@ -26,7 +26,7 @@ public class LoginCommand extends FrontCommand {
                 session.setAttribute("session", client.getMail());
                 session.setAttribute("client", client);
             }else{
-                session.setAttribute("session", "Error al autentificarse.");
+                //session.setAttribute("session", "Error al autentificarse.");
             }
             request.setAttribute("clients", list);
             forward("/loginView.jsp");

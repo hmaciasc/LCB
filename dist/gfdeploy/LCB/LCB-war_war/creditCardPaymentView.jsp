@@ -8,30 +8,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="./style.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name='viewport' content='width-device-width, initial-scale=1.0'>
         <title>Pago via Paypal</title>
     </head>
     <body>
-        <h1>Pago</h1>
-        <div class='headerWrapper'>
-            <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-            <a> Carrito: <% out.print(cart.getCart().size()); %> productos</a>
-            <div class='priceWrapper'>
-                <h2> Total a pagar: <% out.print(cart.getCost()); %> €</h2>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div class='col-lg-1 col-md-offset-2'>
+                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
+                </div>
+                <div class='col-lg-8'>
+                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-4 col-lg-offset-4 paymentInfoWrapper'>
+                    <h1>Pago</h1>
+                    <div class='headerWrapper'>
+                        <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
+                        <a> Carrito: <% out.print(cart.getCart().size()); %> productos</a>
+                        <div class='priceWrapper'>
+                            <h2> Total a pagar: <% out.print(cart.getCost()); %> €</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-4 col-lg-offset-4 paymentInfoWrapper'>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <% //session.setAttribute("cart", null); %>
+                        <input type='hidden' value='ShoppingCommand' name='command'> <!-- Mejor enviarlo a shoppingCommand-->
+                        <label for='email'>Nº Tarjeta:</label>
+                        <input type='email' name='email' class='form-control'><br>
+                        <label for='expire'>Caducidad:</label>
+                        <input type='text' name='expire' class='form-control'><br>
+                        <label for='cvv'>CVV2:</label>
+                        <input type='password' name='cvv' class='form-control'><br>
+                        <button type='submit' class='btn btn-default'>Realizar pago</button>
+                    </form>
+                </div>
             </div>
         </div>
-        
-        <div class='paymentInfoWrapper'>
-            <form action='FrontControllerServlet'>
-                <% //session.setAttribute("cart", null); %>
-                <input type='hidden' value='ShoppingCommand' name='command'> <!-- Mejor enviarlo a shoppingCommand-->
-                <p> Nº Tarjeta:  </p><input type='email' name='email'>
-                <p> Caducidad:  </p><input type='email' name='email'>
-                <p> CVV2: </p><input type='password' name='password'><br>
-                <br><input type='submit' value='Realizar pago'>
-            </form>
-        </div>
-        
     </body>
 </html>

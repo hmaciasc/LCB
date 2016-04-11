@@ -4,6 +4,9 @@
     Author     : maxi
 --%>
 
+<%@page import="util.StatisticsBean"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="util.StatisticsBeanLocal"%>
 <%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="javax.ejb.EJB"%>
@@ -109,6 +112,14 @@
                 </div>
                         <% } %>
                     <% } %>
+            </div>
+            <div class='row'>
+                <div class='col-lg-12'>
+                    <% StatisticsBeanLocal stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
+                    <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
+                    <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
+                    <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
+                </div>
             </div>
         </div>
         <script src='js/jquery.js'></script>

@@ -21,7 +21,7 @@ import javax.naming.NamingException;
  */
 @Singleton
 @Startup
-public class StatisticsBean implements StatisticsBeanLocal {
+public class StatisticsBean {
 
     private int visits = 0;
     private int registeredUsers;

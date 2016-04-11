@@ -19,7 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import util.ShoppingCart;
-import util.StatisticsBeanLocal;
+import util.StatisticsBean;
 
 /**
  *
@@ -35,7 +35,7 @@ public class HomeCommand extends FrontCommand{
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             HttpSession session = request.getSession(false);
             if (session == null) {
-                StatisticsBeanLocal stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean");
+                StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean");
                 stats.addVisit();
                 session = request.getSession(true);
             }

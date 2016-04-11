@@ -115,7 +115,7 @@
             </div>
             <div class='row'>
                 <div class='col-lg-12'>
-                    <% StatisticsBeanLocal stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
+                    <% StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
                     <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
                     <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
                     <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Book;
+import entity.BookValues;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author noe_s_000
  */
 @Stateless
-public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal {
+public class BookValuesFacade extends AbstractFacade<BookValues> implements BookValuesFacadeLocal {
 
     @PersistenceContext(unitName = "LCB-ejbPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal 
         return em;
     }
 
-    public BookFacade() {
-        super(Book.class);
+    public BookValuesFacade() {
+        super(BookValues.class);
     }
     
 }

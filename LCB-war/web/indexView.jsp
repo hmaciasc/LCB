@@ -92,6 +92,11 @@
                         <p> <% out.print(book.getCopy()); %> copias </p>
                         <p> <% out.print(book.getPrice()); %> €</p>
                         <p> <% out.print(book.getCategory()); %> </p>
+                        <% if (book.getUsersvalue() == null) { %>
+                            <p> <% out.print("Valoración: Sin valorar"); %> </p>
+                        <% } else { %>
+                            <p> <% out.print("Valoración: " + book.getUsersvalue()); %> </p>
+                        <% } %>
                             <%  if (book.getCopy() <= 0) {   %>
                                 <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                     <input type='hidden' value='ReserveBookCommand' name='command'>
@@ -104,6 +109,20 @@
                                 <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
                                 <button type='submit' class='btn btn-primary'>Añadir al carrito</button>
                             </form><br>
+                            <% } %>
+                            <% if (client != null) { %>
+                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type="hidden" value="BookValueCommand" name="command" />
+                                <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
+                                <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
+                                1 <input type="radio" name="bookValue" value="1"/>
+                                2 <input type="radio" name="bookValue" value="2"/>
+                                3 <input type="radio" name="bookValue" value="3"/>
+                                4 <input type="radio" name="bookValue" value="4"/>
+                                5 <input type="radio" name="bookValue" value="5"/>
+                                <input type="submit" value="valorar" />
+                            </form>
+                        
                             <% } %>
                     </div>
                 </div>

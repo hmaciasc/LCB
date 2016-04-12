@@ -70,6 +70,7 @@
                         <button type='submit' class='btn btn-default'>Buscar</button>
                     </form>
                 </div>
+                <% if (client != null) { %>
                 <div class='col-lg-1 pull-right'>
                     <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
                     <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
@@ -77,7 +78,12 @@
                         <input type='hidden' value='ShowCartCommand' name='command'>
                         <button type='submit' class='btn btn-default'>Ver Carrito</button>
                     </form>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <input type='hidden' value='ShowReservationsCommand' name='command'>
+                        <button type='submit' class='btn btn-default'>Ver Reservas</button>
+                    </form>
                 </div>
+                <% } %>
             </div>
             <div class='container row-fluid center-block'>
                 <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");

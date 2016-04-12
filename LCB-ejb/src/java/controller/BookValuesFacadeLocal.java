@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Book;
+import entity.BookValues;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author noe_s_000
  */
 @Local
-public interface BookFacadeLocal {
+public interface BookValuesFacadeLocal {
 
-    void create(Book book);
+    void create(BookValues bookValues);
 
-    void edit(Book book);
+    void edit(BookValues bookValues);
 
-    void remove(Book book);
+    void remove(BookValues bookValues);
 
-    Book find(Object id);
+    BookValues find(Object id);
 
-    List<Book> findAll();
+    List<BookValues> findAll();
 
-    List<Book> findRange(int[] range);
+    List<BookValues> findRange(int[] range);
 
     int count();
     

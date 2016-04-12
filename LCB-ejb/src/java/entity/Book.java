@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author javi
+ * @author noe_s_000
  */
 @Entity
 @Table(name = "BOOK")
@@ -33,8 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findByCopy", query = "SELECT b FROM Book b WHERE b.copy = :copy"),
     @NamedQuery(name = "Book.findByValue", query = "SELECT b FROM Book b WHERE b.value = :value"),
     @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn"),
+    @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category"),
     @NamedQuery(name = "Book.findByPublishyear", query = "SELECT b FROM Book b WHERE b.publishyear = :publishyear"),
-    @NamedQuery(name = "Book.findByCategory", query = "SELECT b FROM Book b WHERE b.category = :category")})
+    @NamedQuery(name = "Book.findByUsersvalue", query = "SELECT b FROM Book b WHERE b.usersvalue = :usersvalue")})
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -69,11 +70,17 @@ public class Book implements Serializable {
     @NotNull
     @Column(name = "ISBN")
     private Integer isbn;
-    @Column(name = "PUBLISHYEAR")
-    private Integer publishyear;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "CATEGORY")
     private String category;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "PUBLISHYEAR")
+    private int publishyear;
+    @Column(name = "USERSVALUE")
+    private Integer usersvalue;
 
     public Book() {
     }
@@ -82,13 +89,15 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public Book(Integer isbn, String title, String author, String publisher, int price, int copy) {
+    public Book(Integer isbn, String title, String author, String publisher, int price, int copy, String category, int publishyear) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.price = price;
         this.copy = copy;
+        this.category = category;
+        this.publishyear = publishyear;
     }
 
     public String getTitle() {
@@ -147,20 +156,28 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public Integer getPublishyear() {
-        return publishyear;
-    }
-
-    public void setPublishyear(Integer publishyear) {
-        this.publishyear = publishyear;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getPublishyear() {
+        return publishyear;
+    }
+
+    public void setPublishyear(int publishyear) {
+        this.publishyear = publishyear;
+    }
+
+    public Integer getUsersvalue() {
+        return usersvalue;
+    }
+
+    public void setUsersvalue(Integer usersvalue) {
+        this.usersvalue = usersvalue;
     }
 
     @Override
@@ -187,12 +204,11 @@ public class Book implements Serializable {
     public String toString() {
         return "entity.Book[ isbn=" + isbn + " ]";
     }
-
+    
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone(); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-
+    
 }

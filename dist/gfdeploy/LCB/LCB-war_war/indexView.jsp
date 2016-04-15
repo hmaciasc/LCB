@@ -54,6 +54,10 @@
                         </form>
                     <% }else{ %>
                             Usuario: <% out.print(session.getAttribute("session")); %>
+                            <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type='hidden' value='LogOutCommand' name='command'>
+                                <input type='submit' class='btn btn-default' name='logout' value='Cerrar sesión'>
+                            </form> 
                     <% } %>
                 </div>
                 <div class='col-lg-5'>

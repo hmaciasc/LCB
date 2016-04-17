@@ -100,9 +100,10 @@
                             <% } %>
                         <% } %>
                 </div>
-            </div>
-            <div class='row'>
-                <div class='col-lg-12'>
+            </div><br>
+            <div class='row panel-footer'>
+                <div class='col-lg-10 col-lg-offset-1'>
+                    <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>
                     <% StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
                     <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
                     <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>

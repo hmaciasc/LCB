@@ -10,6 +10,7 @@ import controller.ClientFacadeLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.naming.InitialContext;
@@ -31,6 +32,7 @@ public class StatisticsBean {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @PostConstruct
+    @Schedule(second="*/10", minute="*", hour="*")
     public void startup() {
         Logger.getLogger(StatisticsBean.class.getName()).log(Level.INFO, "Singleton PostConstruct!");
         try {
@@ -54,19 +56,9 @@ public class StatisticsBean {
     public int getRegisteredUsers(){
         return registeredUsers;
     }
-    
-    public void addRegisteredUser(){
-        registeredUsers++;
-    }
 
     public int getNumberOfBooks() {
         return numberOfBooks;
     }
-
-    public void setNumberOfBooks(int numberOfBooks) {
-        this.numberOfBooks = numberOfBooks;
-    }
-    
-    
     
 }

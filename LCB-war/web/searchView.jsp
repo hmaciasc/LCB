@@ -69,6 +69,8 @@
                     </div>
                 </div>
                         <% } %>
+                    <% } else {%>
+                    <p><h3>Sin resultados :(</h3></p>
                     <% } %>
             </div>
         </div>

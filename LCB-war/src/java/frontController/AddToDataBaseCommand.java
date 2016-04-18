@@ -22,9 +22,9 @@ public class AddToDataBaseCommand extends FrontCommand {
             String author = request.getParameter("author");
             String publisher = request.getParameter("publisher");
             String publishYear = request.getParameter("publishYear");
+            String copies = request.getParameter("copies");
             String price = request.getParameter("price");
             String category = request.getParameter("category");
-            int copy = 1;
             String isbn = request.getParameter("isbn1");
 
             if (title != null && author != null && publisher != null && price != null && category != null) {
@@ -33,7 +33,7 @@ public class AddToDataBaseCommand extends FrontCommand {
                 book.setPublisher(publisher);
                 book.setPublishyear(Integer.parseInt(publishYear));
                 book.setPrice(Integer.parseInt(price));
-                book.setCopy(copy);
+                book.setCopy(Integer.parseInt(copies));
                 book.setIsbn(Integer.parseInt(isbn));
                 book.setCategory(category);
                 

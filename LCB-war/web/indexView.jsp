@@ -127,12 +127,12 @@
                                 <input type="hidden" value="BookValueCommand" name="command" />
                                 <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
                                 <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
-                                1 <input type="radio" name="bookValue" value="1"/>
-                                2 <input type="radio" name="bookValue" value="2"/>
-                                3 <input type="radio" name="bookValue" value="3"/>
-                                4 <input type="radio" name="bookValue" value="4"/>
-                                5 <input type="radio" name="bookValue" value="5"/>
-                                <input type="submit" value="valorar" />
+                                1 <input type="radio"  name="bookValue" value="1"/>
+                                2 <input type="radio"  name="bookValue" value="2"/>
+                                3 <input type="radio"  name="bookValue" value="3"/>
+                                4 <input type="radio"  name="bookValue" value="4"/>
+                                5 <input type="radio"  name="bookValue" value="5"/>
+                                <input type="submit" class='btn btn-info' value="valorar" />
                             </form>
                         
                             <% } %>

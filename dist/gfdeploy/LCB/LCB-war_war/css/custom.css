@@ -15,13 +15,11 @@ img {
 
 .center-block {float: none !important}
 
-.container{
-    border: 1px solid #cccccc;
-}
-
 .book {
     height: 600px;
     margin: 0 auto;
     border: 1px solid #cccccc;
+    padding-top: 5px;
     text-align: center;
+    margin-top: 5px;
 }

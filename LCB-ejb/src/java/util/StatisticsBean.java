@@ -72,7 +72,6 @@ public class StatisticsBean {
         int copies = 0;
         List<Book> bookList = books.findAll();
         for (Book book : bookList) {
-            Logger.getLogger(StatisticsBean.class.getName()).log(Level.INFO, book.getCopy() + " copias");
             copies += book.getCopy();
         }
         return copies;

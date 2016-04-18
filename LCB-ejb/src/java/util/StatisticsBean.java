@@ -7,6 +7,8 @@ package util;
 
 import controller.BookFacadeLocal;
 import controller.ClientFacadeLocal;
+import entity.Book;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -27,7 +29,7 @@ public class StatisticsBean {
     private int visits = 0;
     private int registeredUsers;
     private int numberOfBooks;
-    
+    private int numberOfBookCopies = 0;
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -40,6 +42,7 @@ public class StatisticsBean {
             registeredUsers = clients.count();
             BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             numberOfBooks = books.count();
+            numberOfBookCopies = getNumberOfCopies(books);
         } catch (NamingException ex) {
             Logger.getLogger(StatisticsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,4 +64,16 @@ public class StatisticsBean {
         return numberOfBooks;
     }
     
+    public int getNumberOfBookCopies() {
+        return numberOfBookCopies;
+    }
+
+    private int getNumberOfCopies(BookFacadeLocal books) {
+        int copies = 0;
+        List<Book> bookList = books.findAll();
+        for (Book book : bookList) {
+            copies += book.getCopy();
+        }
+        return copies;
+    }
 }

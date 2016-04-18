@@ -42,6 +42,8 @@
                         <input class='form-control' type='text' name='publishYear'><br>
                         <label for='price'>Precio</label> 
                         <input class='form-control' type='text' name='price'><br>
+                        <label for='copies'>Ejemplares</label> 
+                        <input class='form-control' type='text' name='copies'><br>
                         <label for='isbn1'>ISBN</label> 
                         <input class='form-control' type='text' name='isbn1'><br>
                         <label for='category'>Categoria</label> 
@@ -108,6 +110,7 @@
                     <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
                     <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
                     <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
+                    <h4> Número de ejemplares totales: <%out.print(stats.getNumberOfBookCopies()); %></h4>
                 </div>
             </div>
         </div>

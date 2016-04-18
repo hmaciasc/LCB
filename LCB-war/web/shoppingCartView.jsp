@@ -66,6 +66,7 @@
             <div class='row'>
                 <div class='col-lg-4 col-lg-offset-4'>
                     <div class='priceWrapper'>
+                        <% if (cart.getCart().size() > 0) { %>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <label for='directionSelector'>Elija dirección de envío</label>
                             <select name='directionSelector' class='form-control'>
@@ -88,6 +89,7 @@
                             <h3> Total a pagar: <% out.print(cart.getCost()); %> € </h3>
                             <button type='submit' class='btn btn-default'>Pagar</button>
                         </form>
+                            <% } %>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,8 @@
     Author     : Famïa
 --%>
 
+<%@page import="util.StatisticsBean"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -97,6 +99,15 @@
 
                             <% } %>
                         <% } %>
+                </div>
+            </div><br>
+            <div class='row panel-footer'>
+                <div class='col-lg-10 col-lg-offset-1'>
+                    <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>
+                    <% StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
+                    <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
+                    <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
+                    <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import util.ShoppingCart;
+import util.StatisticsBean;
 
 /**
  *
@@ -32,7 +33,12 @@ public class HomeCommand extends FrontCommand{
         try {
             BookFacadeLocal books;
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession(false);
+            if (session == null) {
+                StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean");
+                stats.addVisit();
+                session = request.getSession(true);
+            }
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new ShoppingCart();

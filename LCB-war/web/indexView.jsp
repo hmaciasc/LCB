@@ -4,6 +4,8 @@
     Author     : maxi
 --%>
 
+<%@page import="util.StatisticsBean"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="javax.ejb.EJB"%>

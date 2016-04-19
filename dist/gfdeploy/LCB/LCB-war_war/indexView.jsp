@@ -57,6 +57,10 @@
                     <% }else{ %>
                             Usuario: <% out.print(session.getAttribute("session")); %>
                             <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type='hidden' value='AddShoppingCommand' name='command'>
+                                <input type='submit' class='btn btn-default' name='compras' value='Mis Compras'>
+                            </form> 
+                            <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
                                 <input type='hidden' value='LogOutCommand' name='command'>
                                 <input type='submit' class='btn btn-default' name='logout' value='Cerrar sesión'>
                             </form> 

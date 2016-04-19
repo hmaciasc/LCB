@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Client;
+import entity.Starred;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Soraya
  */
 @Local
-public interface ClientFacadeLocal {
+public interface StarredFacadeLocal {
 
-    void create(Client client);
+    void create(Starred starred);
 
-    void edit(Client client);
+    void edit(Starred starred);
 
-    void remove(Client client);
+    void remove(Starred starred);
 
-    Client find(Object id);
+    Starred find(Object id);
 
-    List<Client> findAll();
+    List<Starred> findAll();
 
-    List<Client> findRange(int[] range);
+    List<Starred> findRange(int[] range);
 
     int count();
     

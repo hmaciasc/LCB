@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Client;
+import entity.Shopping;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Soraya
  */
 @Stateless
-public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
+public class ShoppingFacade extends AbstractFacade<Shopping> implements ShoppingFacadeLocal {
 
     @PersistenceContext(unitName = "LCB-ejbPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         return em;
     }
 
-    public ClientFacade() {
-        super(Client.class);
+    public ShoppingFacade() {
+        super(Shopping.class);
     }
     
 }

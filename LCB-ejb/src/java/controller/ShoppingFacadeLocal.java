@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Client;
+import entity.Shopping;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Soraya
  */
 @Local
-public interface ClientFacadeLocal {
+public interface ShoppingFacadeLocal {
 
-    void create(Client client);
+    void create(Shopping shopping);
 
-    void edit(Client client);
+    void edit(Shopping shopping);
 
-    void remove(Client client);
+    void remove(Shopping shopping);
 
-    Client find(Object id);
+    Shopping find(Object id);
 
-    List<Client> findAll();
+    List<Shopping> findAll();
 
-    List<Client> findRange(int[] range);
+    List<Shopping> findRange(int[] range);
 
     int count();
     

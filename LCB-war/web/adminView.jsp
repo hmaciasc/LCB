@@ -144,7 +144,7 @@
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2>Gestión de usuarios</h2>
                     <form name='user_management' action='FrontControllerServlet' class='form-horizontal' role='form' method='post'>
-                        <input type='hidden' value='UserManagementCommand' name='command'>
+                        <input type='hidden' value='GetAllClientsCommand' name='command'>
                         <button type='submit' class='btn btn-danger'>Editar usuarios</button>
                     </form>
                 </div>

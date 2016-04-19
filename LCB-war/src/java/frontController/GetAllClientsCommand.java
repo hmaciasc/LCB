@@ -12,7 +12,7 @@ import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
-public class UserManagementCommand extends FrontCommand {
+public class GetAllClientsCommand extends FrontCommand {
 
     @Override
     public void process() {
@@ -23,19 +23,24 @@ public class UserManagementCommand extends FrontCommand {
                 try {
                     forward("/errorView.jsp");
                 } catch (ServletException | IOException ex) {
-                    Logger.getLogger(UserManagementCommand.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GetAllClientsCommand.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
-                ClientFacadeLocal clients = InitialContext.doLookup("java:global/LCB/LCB-ejb/ClientFacade");
-                Client clientToModify = clients.find(request.getParameter("clientEmail"));
-                List<Client> list = new ArrayList<>();
-                list.add(clientToModify);
-                session.setAttribute("modClient", list);
-                forward("/modifyUserView.jsp");
             }
+            ClientFacadeLocal clients = InitialContext.doLookup("java:global/LCB/LCB-ejb/ClientFacade");
+            List<Client> clientList = clients.findAll();
+            List<Client> list = new ArrayList<>();
+            for (Client client1 : clientList) {
+                list.add(client1);
+            }
+            session.setAttribute("allClients", list);
+            forward("/userManagementView.jsp");
         } catch (NamingException | ServletException | IOException ex) {
-            Logger.getLogger(UserManagementCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetAllClientsCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
+
+    
+    
     
 }

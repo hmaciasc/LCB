@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author maxi
+ * @author Famïa
  */
 @Stateless
 public class DiscountFacade extends AbstractFacade<Discount> implements DiscountFacadeLocal {
+
     @PersistenceContext(unitName = "LCB-ejbPU")
     private EntityManager em;
 

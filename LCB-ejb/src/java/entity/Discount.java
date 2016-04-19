@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author maxi
+ * @author Famïa
  */
 @Entity
 @Table(name = "DISCOUNT")
@@ -27,36 +27,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Discount.findAll", query = "SELECT d FROM Discount d"),
     @NamedQuery(name = "Discount.findByDiscountname", query = "SELECT d FROM Discount d WHERE d.discountname = :discountname"),
-    @NamedQuery(name = "Discount.findById", query = "SELECT d FROM Discount d WHERE d.id = :id"),
     @NamedQuery(name = "Discount.findByDiscount", query = "SELECT d FROM Discount d WHERE d.discount = :discount")})
 public class Discount implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "DISCOUNTNAME")
-    private String discountname;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    private Short id;
-    @Basic(optional = false)
-    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "DISCOUNTNAME")
+    private String discountname;
     @Column(name = "DISCOUNT")
-    private int discount;
+    private Integer discount;
 
     public Discount() {
     }
 
-    public Discount(Short id) {
-        this.id = id;
-    }
-
-    public Discount(Short id, String discountname, int discount) {
-        this.id = id;
+    public Discount(String discountname) {
         this.discountname = discountname;
-        this.discount = discount;
     }
 
     public String getDiscountname() {
@@ -67,26 +55,18 @@ public class Discount implements Serializable {
         this.discountname = discountname;
     }
 
-    public Short getId() {
-        return id;
-    }
-
-    public void setId(Short id) {
-        this.id = id;
-    }
-
-    public int getDiscount() {
+    public Integer getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (discountname != null ? discountname.hashCode() : 0);
         return hash;
     }
 
@@ -97,7 +77,7 @@ public class Discount implements Serializable {
             return false;
         }
         Discount other = (Discount) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.discountname == null && other.discountname != null) || (this.discountname != null && !this.discountname.equals(other.discountname))) {
             return false;
         }
         return true;
@@ -105,7 +85,7 @@ public class Discount implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Discount[ id=" + id + " ]";
+        return "entity.Discount[ discountname=" + discountname + " ]";
     }
     
 }

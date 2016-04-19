@@ -4,6 +4,7 @@
     Author     : Famïa
 --%>
 
+<%@page import="entity.Discount"%>
 <%@page import="util.StatisticsBean"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="java.util.ArrayList"%>
@@ -102,7 +103,44 @@
                             <% } %>
                         <% } %>
                 </div>
+            </div>
+            
+            <div class='row'>
+                <div class='col-lg-10 col-lg-offset-1'>
+                    <h2>Añadir Oferta Nueva</h2>   
+                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                            <label for='discountName'>Nombre del descuento:</label> 
+                            <input class='form-control' type='text' name='discountName'><br>
+                            <label for='discount'>Descuento (en porcentaje):</label> 
+                            <input class='form-control' type='text' name='discount'><br>
+                        
+                            <input type='hidden' value='CreateDiscountDB' name='command'>
+                            <button type='submit'  class='btn btn-danger' name='button' value='Añadir Descuento'>Añadir Descuento</button><br>                                    
+                        </form>
+                    
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-lg-10 col-lg-offset-1'>
+                    <h2>Eliminar Descuento</h2>
+                    <% ArrayList<Discount> discounts = (ArrayList) session.getAttribute("discounts"); 
+                        if (discounts !=  null && !discounts.isEmpty()) {
+                            for (Discount discount : discounts){
+                    %>
+
+                        <p> <b>Nombre Descuento</b> <% out.print(discount.getDiscountname()); %>.
+                        <b>Descuento:</b> <% out.print(discount.getDiscount()); %>.
+                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                            <input type='hidden' value='RemoveDiscountDB' name='command'>
+                            <input type='hidden' value='<% out.print(discount.getDiscountname());%>' name='discountName2'>
+                            <button type='submit'  class='btn btn-danger'>Eliminar</button>
+                        </form>
+
+                            <% } %>
+                        <% } %>
+                </div>
             </div><br>
+            
             <div class='row panel-footer'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>

@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author maxi
+ * @author Famïa
  */
 @Local
 public interface DiscountFacadeLocal {

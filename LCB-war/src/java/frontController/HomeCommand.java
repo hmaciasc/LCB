@@ -6,16 +6,16 @@
 package frontController;
 
 import controller.BookFacadeLocal;
+import controller.DiscountFacadeLocal;
 import entity.Book;
+import entity.Discount;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import util.ShoppingCart;
@@ -33,6 +33,7 @@ public class HomeCommand extends FrontCommand{
         try {
             BookFacadeLocal books;
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
+            DiscountFacadeLocal discounts = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
             HttpSession session = request.getSession(false);
             if (session == null) {
                 StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean");
@@ -53,6 +54,13 @@ public class HomeCommand extends FrontCommand{
             }
             //request.setAttribute("books", list);
             session.setAttribute("books", list);
+            
+            List<Discount> discountList = discounts.findAll();
+            ArrayList<Discount> lista= new ArrayList<>();
+            for (Discount discount : discountList) {
+                lista.add(discount);
+            }
+            session.setAttribute("discounts", lista);
             
             forward("/indexView.jsp");
             } catch (ServletException | IOException | NamingException ex) {

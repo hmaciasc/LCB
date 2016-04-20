@@ -49,7 +49,7 @@ public class ModifyUserCommand extends FrontCommand {
         if(!getRequest("name").equals("noChange")) client.setName(getRequest("name"));
         if(!getRequest("lastname").equals("noChange")) client.setLastname(getRequest("lastname"));
         if(!getRequest("password").equals("noChange")){
-            client.setLastname(getRequest("password"));
+            client.setPassword(getRequest("password"));
         }else{
             client.setPassword(getClient(session, "modClient").getPassword());
         }

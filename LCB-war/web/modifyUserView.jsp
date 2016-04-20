@@ -56,7 +56,7 @@
                             <label for="address2">Dirección 2: </label>
                             <input class='form-control' type='text' name='address2'>
                             <label for="admin">Administrador: </label>
-                            <input class='form-control' type='text' name='admin'>
+                            <input class='form-control' type='text' name='admin'><br>
                             <button type='submit' class='btn btn-danger'>Modificar usuario</button>
                         </form><br>
                     </div>

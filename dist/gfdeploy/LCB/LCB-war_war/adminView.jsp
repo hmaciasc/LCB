@@ -148,7 +148,7 @@
                         <button type='submit' class='btn btn-danger'>Editar usuarios</button>
                     </form>
                 </div>
-            </div>
+            </div><br>
             <div class='row panel-footer'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>

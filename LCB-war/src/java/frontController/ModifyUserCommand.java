@@ -37,23 +37,43 @@ public class ModifyUserCommand extends FrontCommand {
 
     private Client getClient(HttpSession session) {
         Client client = new Client();
-        //System.out.println("EMAIL: "+session.getAttribute("clientEmail"));
+        Client originalClient = getClient(session, "modClient");
+        client.setMail(originalClient.getMail());
+        if(!getRequest("address1").equals("noChange")){ 
+            client.setAddress1(getRequest("address1"));
+        }else{
+            client.setAddress1(originalClient.getAddress1());
+        }
         
-        String email = getClient(session, "modClient").getMail();
-        String pass = getClient(session, "modClient").getPassword();
-        System.out.println("EMAIL: "+email);
-        System.out.println("PASS: "+pass);
-        client.setMail(email);
-        if(!getRequest("address1").equals("noChange")) client.setAddress1(getRequest("address1"));
-        if(!getRequest("address2").equals("noChange")) client.setAddress2(getRequest("address2"));
-        if(!getRequest("name").equals("noChange")) client.setName(getRequest("name"));
-        if(!getRequest("lastname").equals("noChange")) client.setLastname(getRequest("lastname"));
+        if(!getRequest("address2").equals("noChange")){ 
+            client.setAddress2(getRequest("address2"));
+        }else{
+            client.setAddress2(originalClient.getAddress2());
+        }
+        
+        if(!getRequest("name").equals("noChange")){ 
+            client.setName(getRequest("name"));
+        }else{
+            client.setName(originalClient.getName());
+        }
+        
+        if(!getRequest("lastname").equals("noChange")){ 
+            client.setLastname(getRequest("lastname"));
+        }else{
+            client.setLastname(originalClient.getLastname());
+        }
+        
         if(!getRequest("password").equals("noChange")){
             client.setPassword(getRequest("password"));
         }else{
             client.setPassword(getClient(session, "modClient").getPassword());
         }
-        if(!getRequest("admin").equals("noChange")) client.setIsadmin(Integer.parseInt(getRequest("admin")));
+        
+        if(!getRequest("admin").equals("noChange")){
+            client.setIsadmin(Integer.parseInt(getRequest("admin")));
+        }else{
+            client.setIsadmin(originalClient.getIsadmin());
+        }
         System.out.println("CLIENT: "+ client);
         return client;
     }

@@ -56,6 +56,11 @@
                             <input type='hidden' value='UserManagementCommand' name='command'>
                             <input type='hidden' value='<% out.print(client.getMail());%>' name='clientEmail'>
                             <button type='submit' class='btn btn-danger'>Editar usuario</button>
+                        </form>
+                        <form action='FrontControllerServlet' method='post' class='form-horizontal' role='form'>
+                            <input type='hidden' value='DeleteUserCommand' name='command'>
+                            <input type='hidden' value='<% out.print(client.getMail());%>' name='deleteClientEmail'>
+                            <button type='submit' class='btn btn-danger'>Eliminar usuario</button>
                         </form><br>
                     </div>
                 </div>

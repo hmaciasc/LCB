@@ -145,7 +145,7 @@
                     <h2>Gestión de usuarios</h2>
                     <form name='user_management' action='FrontControllerServlet' class='form-horizontal' role='form' method='post'>
                         <input type='hidden' value='GetAllClientsCommand' name='command'>
-                        <button type='submit' class='btn btn-danger'>Editar usuarios</button>
+                        <button type='submit' class='btn btn-danger'>Gestionar usuarios</button>
                     </form>
                 </div>
             </div><br>

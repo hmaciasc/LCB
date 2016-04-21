@@ -30,7 +30,7 @@ public class DeleteUserCommand extends FrontCommand {
                 session.setAttribute("error", "El cliente no existe.");
                 forward("/errorView.jsp");
             }
-            forward("/userManagementView.jsp");
+            forward("/FrontControllerServlet?command=GetAllClientsCommand");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(DeleteUserCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

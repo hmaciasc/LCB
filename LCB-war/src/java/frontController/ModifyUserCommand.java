@@ -29,7 +29,7 @@ public class ModifyUserCommand extends FrontCommand {
             ClientFacadeLocal clients = InitialContext.doLookup("java:global/LCB/LCB-ejb/ClientFacade");
             Client clientToModify = getClient(session);
             clients.edit(clientToModify);
-            forward("/userManagementView.jsp");
+            forward("/FrontControllerServlet?command=GetAllClientsCommand");
         } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(ModifyUserCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

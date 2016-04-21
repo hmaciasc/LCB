@@ -31,7 +31,7 @@ public class UserManagementCommand extends FrontCommand {
                 List<Client> list = new ArrayList<>();
                 list.add(clientToModify);
                 session.setAttribute("modClient", list);
-                forward("/FrontControllerServlet?command=GetAllClientsCommand");
+                forward("/modifyUserView.jsp");
             }
         } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(UserManagementCommand.class.getName()).log(Level.SEVERE, null, ex);

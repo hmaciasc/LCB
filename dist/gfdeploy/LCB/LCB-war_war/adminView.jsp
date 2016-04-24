@@ -150,13 +150,23 @@
                 </div>
             </div><br>
             <div class='row panel-footer'>
-                <div class='col-lg-10 col-lg-offset-1'>
-                    <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>
-                    <% StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
-                    <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
-                    <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
-                    <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
-                    <h4> Número de ejemplares totales: <%out.print(stats.getNumberOfBookCopies()); %></h4>
+                <div class='row'>
+                    <div class='col-lg-5 col-lg-offset-1'>
+                        <h2><span class="glyphicon glyphicon-stats"></span> Estadísicas de la web</h2>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-lg-4 col-lg-offset-1'>
+                        <% StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean"); %>
+                        <h4> Visitas: <% out.print(stats.getVisits()); %> </h4>
+                        <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
+                        <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
+                    </div>
+                    <div class='col-lg-4'>
+                        <h4> Número de ejemplares totales: <%out.print(stats.getNumberOfBookCopies()); %></h4>
+                        <h4> Número de ventas: <%out.print(stats.getSelloutsCounter()); %></h4>
+                        <h4> Número de Valoraciones: <%out.print(stats.getRating()); %></h4>
+                    </div>
                 </div>
             </div>
         </div>

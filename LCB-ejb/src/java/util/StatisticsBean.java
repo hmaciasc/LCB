@@ -6,8 +6,11 @@
 package util;
 
 import controller.BookFacadeLocal;
+import controller.BookValuesFacadeLocal;
 import controller.ClientFacadeLocal;
+import controller.ShoppingFacadeLocal;
 import entity.Book;
+import entity.BookValues;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,9 +33,9 @@ public class StatisticsBean {
     private int registeredUsers;
     private int numberOfBooks;
     private int numberOfBookCopies = 0;
+    private int selloutsCounter = 0;
+    private int rating = 0;
     
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     @PostConstruct
     @Schedule(second="*/10", minute="*", hour="*")
     public void startup() {
@@ -43,6 +46,10 @@ public class StatisticsBean {
             BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             numberOfBooks = books.count();
             numberOfBookCopies = getNumberOfCopies(books);
+            ShoppingFacadeLocal sellouts = InitialContext.doLookup("java:global/LCB/LCB-ejb/ShoppingFacade!controller.ShoppingFacadeLocal");
+            selloutsCounter = sellouts.count();
+            BookValuesFacadeLocal ratings = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookValuesFacade!controller.BookValuesFacadeLocal");
+            rating = ratings.count();
         } catch (NamingException ex) {
             Logger.getLogger(StatisticsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,4 +83,14 @@ public class StatisticsBean {
         }
         return copies;
     }
+
+    public int getSelloutsCounter() {
+        return selloutsCounter;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+    
+    
 }

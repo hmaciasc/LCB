@@ -70,7 +70,7 @@
                     <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <input type='hidden' value='SearchCommand' name='command'>
                         <label for="search">Buscar: </label> 
-                        <input class='form-control' type='text' name='search'><br>
+                        <input class='form-control' type='text' name='search' required><br>
                         <label for="select">Filtro: </label> 
                         <select name="select" class='form-control'>
                             <option selected="selected" value="0">Título</option>

@@ -157,6 +157,8 @@
                     <h4> Usuarios registrados: <% out.print(stats.getRegisteredUsers()); %> </h4>
                     <h4> Libros disponibles: <% out.print(stats.getNumberOfBooks()); %> </h4>
                     <h4> Número de ejemplares totales: <%out.print(stats.getNumberOfBookCopies()); %></h4>
+                    <h4> Número de ventas: <%out.print(stats.getSelloutsCounter()); %></h4>
+                    <h4> Número de Valoraciones: <%out.print(stats.getRating()); %></h4>
                 </div>
             </div>
         </div>

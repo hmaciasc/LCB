@@ -97,7 +97,7 @@
                 <% } %>
             </div>
             <div class='container row-fluid center-block'>
-                <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
+                <% ArrayList<Book> books = (ArrayList) session.getAttribute("allBooks");
                     if (books !=  null && !books.isEmpty()) {
                         for (Book book : books){
                 %>
@@ -183,8 +183,21 @@
                         <% } %>
                     </div>
                 </div>
-                <% } %>
                     <% } %>
+                <% } %>
+                    <% String numberOfBooks = String.valueOf(session.getAttribute("bookCount"));
+                    int bookCount = Integer.parseInt(numberOfBooks); %>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <input type="hidden" value="HomeCommand" name="command" />
+                        <div class='text-center'>
+                            <ul class='pagination'>
+                                <li><input type='submit' class='btn btn-default' value='1' name='pageNumber'/></li>
+                                <% for (int i = 2; i <= Math.round((double) bookCount / 6); i++){ %>
+                                <li><input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'/></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </form>
             </div>
         </div>
         <script src='js/jquery.js'></script>

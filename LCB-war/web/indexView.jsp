@@ -142,8 +142,18 @@
                             <% } %>
                     </div>
                 </div>
-                <% } %>
                     <% } %>
+                <% } %>
+                <% String numberOfBooks = String.valueOf(session.getAttribute("bookCount"));
+                    int bookCount = Integer.parseInt(numberOfBooks); %>
+                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                    <input type="hidden" value="HomeCommand" name="command" />
+                    <input type='submit' class='btn btn-default' value='1' name='pageNumber'></input>
+                    <% System.out.print("CCC" + Math.ceil((double) (bookCount / 6)));
+                    for (int i = 2; i <= (int) Math.ceil((double) (bookCount / 6)); i++){ %>
+                    <input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'></input>
+                    <% } %>
+                </form>
             </div>
         </div>
         <script src='js/jquery.js'></script>

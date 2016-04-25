@@ -35,10 +35,12 @@ public class HomeCommand extends FrontCommand{
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             DiscountFacadeLocal discounts = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
             HttpSession session = request.getSession(false);
+            int page = 1;
             if (session == null) {
                 StatisticsBean stats = InitialContext.doLookup("java:global/LCB/LCB-ejb/StatisticsBean");
                 stats.addVisit();
                 session = request.getSession(true);
+                page = 1;
             }
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
@@ -46,8 +48,15 @@ public class HomeCommand extends FrontCommand{
                 //cart.initialize();
                 session.setAttribute("cart", cart);
             }
-
-            List<Book> bookList = books.findAll();
+            
+            if (request.getParameter("pageNumber") != null) {
+                page = Integer.parseInt(request.getParameter("pageNumber"));
+                Logger.getLogger(HomeCommand.class.getName()).log(Level.INFO, "Pagina: " + page);
+                
+            }
+            
+            session.setAttribute("bookCount", books.findAll().size());
+            List<Book> bookList = getBooks(books, page);
             ArrayList<Book> list= new ArrayList<>();
             for (Book book : bookList) {
                 list.add(book);
@@ -66,5 +75,11 @@ public class HomeCommand extends FrontCommand{
             } catch (ServletException | IOException | NamingException ex) {
                 Logger.getLogger(HomeCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private List<Book> getBooks(BookFacadeLocal books, int page) {
+        int booksPerPage = 6;
+        int range[] = {booksPerPage * (page - 1), booksPerPage * (page - 1) + booksPerPage - 1};
+        return books.findRange(range);
     }
 }

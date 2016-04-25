@@ -155,9 +155,14 @@
                                     5 <input type="radio"  name="bookValue" value="5"/>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="submit" class='btn btn-info' style="width: 150px;" value="valorar" />
+                                    <button class="btn btn-warning btn-sm" type="submit"><span class='glyphicon glyphicon-star'></span></button>
+                                    <!--<input type="submit" class='btn btn-info' style="width: 150px;" value="valorar" />-->
                                 </div>
                             </div>
+                        </form>
+                        
+                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <button class="btn btn-danger btn-sm" type="submit"><span class='glyphicon glyphicon-heart'></span></button>
                         </form>
 
                         <% } %>
@@ -165,7 +170,7 @@
                             <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                 <input type='hidden' value='ReserveBookCommand' name='command'>
                                 <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                <button type='submit' class='btn btn-warning' style="margin-top: 10px;">Reservar</button>
+                                <button type='submit' class='btn btn-info' style="margin-top: 10px;">Reservar</button>
                             </form><br>
                         <%  } else {   %>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
@@ -180,6 +185,7 @@
                                 </div>
                             </div>
                         </form><br>
+                        
                         <% } %>
                     </div>
                 </div>

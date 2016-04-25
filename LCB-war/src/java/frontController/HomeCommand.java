@@ -62,6 +62,12 @@ public class HomeCommand extends FrontCommand{
                 list.add(book);
             }
             //request.setAttribute("books", list);
+            session.setAttribute("allBooks", list);
+            List<Book> allBooks = books.findAll();
+            list= new ArrayList<>();
+            for (Book book : allBooks) {
+                list.add(book);
+            }
             session.setAttribute("books", list);
             
             List<Discount> discountList = discounts.findAll();

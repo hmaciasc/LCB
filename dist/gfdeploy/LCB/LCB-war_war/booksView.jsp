@@ -1,9 +1,3 @@
-<%-- 
-    Document   : indexView
-    Created on : 12-mar-2016, 19:15:41
-    Author     : maxi
---%>
-
 <%@page import="util.StatisticsBean"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="entity.Client"%>
@@ -14,6 +8,7 @@
 <%@page import="entity.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -70,7 +65,7 @@
                     <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <input type='hidden' value='SearchCommand' name='command'>
                         <label for="search">Buscar: </label> 
-                        <input class='form-control' type='text' name='search' required><br>
+                        <input class='form-control' type='text' name='search'><br>
                         <label for="select">Filtro: </label> 
                         <select name="select" class='form-control'>
                             <option selected="selected" value="0">Título</option>
@@ -96,7 +91,7 @@
                 <% } %>
             </div>
             <div class='container row-fluid center-block'>
-                <% ArrayList<Book> books = (ArrayList) session.getAttribute("allBooks");
+                <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
                     if (books !=  null && !books.isEmpty()) {
                         for (Book book : books){
                 %>
@@ -142,21 +137,8 @@
                             <% } %>
                     </div>
                 </div>
-                    <% } %>
                 <% } %>
-                    <% String numberOfBooks = String.valueOf(session.getAttribute("bookCount"));
-                    int bookCount = Integer.parseInt(numberOfBooks); %>
-                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                        <input type="hidden" value="HomeCommand" name="command" />
-                        <div class='text-center'>
-                            <ul class='pagination'>
-                                <li><input type='submit' class='btn btn-default' value='1' name='pageNumber'/></li>
-                                <% for (int i = 2; i <= Math.round((double) bookCount / 6); i++){ %>
-                                <li><input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'/></li>
-                                <% } %>
-                            </ul>
-                        </div>
-                    </form>
+                    <% } %>
             </div>
         </div>
         <script src='js/jquery.js'></script>

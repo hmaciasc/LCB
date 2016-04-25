@@ -93,6 +93,10 @@
                         <input type='hidden' value='ShowReservationsCommand' name='command'>
                         <button type='submit' class='btn btn-default'>Ver Reservas</button>
                     </form>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <input type='hidden' value='ShowSuggestionsCommand' name='command'>
+                        <button type='submit' class='btn btn-default'>Ver Recomendaciones</button>
+                    </form>
                 </div>
                 <% } %>
             </div>

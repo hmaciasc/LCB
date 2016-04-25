@@ -30,7 +30,6 @@ public class SearchCommand extends FrontCommand {
     @Override
     public void process() {
         try {
-            //BookFacadeLocal books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             List<Book> list = new ArrayList<>();
             HttpSession session = request.getSession();
 
@@ -45,11 +44,11 @@ public class SearchCommand extends FrontCommand {
                     list.add(book);
                 }
                 session.setAttribute("searchResult", list);
-                forward("/searchView.jsp");
             }else{
                 session.setAttribute("searchResult", null);
-                forward("/searchView.jsp");
             }
+            em.close();
+            forward("/searchView.jsp");
         } catch (ServletException | IOException ex) {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

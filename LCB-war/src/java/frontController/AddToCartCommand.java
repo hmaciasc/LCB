@@ -26,6 +26,16 @@ public class AddToCartCommand extends FrontCommand{
             HttpSession session = request.getSession();
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             Integer isbn = Integer.parseInt(request.getParameter("bookIsbn"));
+            String inputValue = request.getParameter("nCopies");
+            int nCopies = 0;
+            try  
+            {  
+              nCopies = Integer.parseInt(inputValue);  
+            }  
+            catch(NumberFormatException nfe)  
+            {  
+              nCopies = 1;  
+            }  
 //            Integer isbn = Integer.parseInt(request.getParameter("bookIsbn"));
             books = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             //Tratarlo como HashMap<Book, Integer>, donde integer es el numero
@@ -35,36 +45,36 @@ public class AddToCartCommand extends FrontCommand{
 
             Book bookDB = books.find(isbn);
             if(bookDB != null){
-                if(cart.getCart().isEmpty()){
-                    cart.addBookToCart(bookDB);
-                }else{
-                    int index = -1;
-                    for (int i = 0; i < cart.getCart().size(); i++) {
-                        if(cart.getCart().get(i).getIsbn().equals(isbn)){
-                            index = i;
-                        }
-                    }
-                    if(index == -1){
+                for (int j=0; j<nCopies; j++) {
+                    if(cart.getCart().isEmpty() && nCopies == 1){
                         cart.addBookToCart(bookDB);
                     }else{
-                        Book modBook = cart.getCart().get(index);
-                        Book clonedBook = (Book) modBook.clone();
-                        clonedBook.setCopy(modBook.getCopy() - 1);
-                        if(clonedBook.getCopy() > 0)
-                            cart.addBookToCart(clonedBook);
+                        int index = -1;
+                        for (int i = 0; i < cart.getCart().size(); i++) {
+                            if(cart.getCart().get(i).getIsbn().equals(isbn)){
+                                index = i;
+                            }
+                        }
+                        if(index == -1){
+                            cart.addBookToCart(bookDB);
+                        }else{
+                            Book modBook = cart.getCart().get(index);
+                            Book clonedBook = (Book) modBook.clone();
+                            clonedBook.setCopy(modBook.getCopy() - 1);
+                            if(clonedBook.getCopy() > 0)
+                                cart.addBookToCart(clonedBook);
+                        }
                     }
                 }
             }
             /*
-
             List<Book> bookList = books.findAll();
             for (Book book : bookList) {
                 if (book.getIsbn().equals(isbn)) {
                     cart.addBoookToCart(book);
                     //session.setAttribute("cart", cart);
                 }
-            }
-*/
+            }*/
             forward("/indexView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(AddToCartCommand.class.getName()).log(Level.SEVERE, null, ex);

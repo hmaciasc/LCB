@@ -47,11 +47,10 @@
                         for (Book book : books){
                 %>
                 <div class='col-lg-4'>
-                    <div class='book'>
+                    <div class='book-cart'>
                         <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive" width="304" height="236">
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
-                        <p> <% out.print(book.getCopy()); %> copias </p>
                         <p> <% out.print(book.getPrice()); %> €</p>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type="hidden" name="command" value="DeleteFromCart" />

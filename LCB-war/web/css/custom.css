@@ -15,11 +15,37 @@ img {
 
 .center-block {float: none !important}
 
-.book {
+/*.book {
     height: 600px;
     margin: 0 auto;
     border: 1px solid #cccccc;
     padding-top: 5px;
     text-align: center;
     margin-top: 5px;
+}*/
+.book {
+    height: 530px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    text-align: center;
+}
+
+.nbooks {
+    width: 125px;
+    margin-bottom: 12px;
+}
+
+.book-cart {
+    height: 460px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    text-align: center;
+}
+
+.tittles {
+    text-align: left;
+}
+
+.bookDescription {
+    text-align: center;
 }

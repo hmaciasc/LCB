@@ -50,7 +50,7 @@
                         <label for='category'>Categoria</label> 
                         <input class='form-control' type='text' name='category'><br>
                         <input type='hidden' name='command' value='AddToDataBaseCommand'><br>
-                        <button class='btn btn-default' type='submit' name='button' value='Añadir Libro'>Añadir</button><br>
+                        <button class='btn btn-danger' type='submit' name='button' value='Añadir Libro'>Añadir</button><br>
                     </form>
                 </div>
                 <div class='col-lg-4'>
@@ -107,13 +107,13 @@
             </div>
             
             <div class='row'>
-                <div class='col-lg-10 col-lg-offset-1'>
+                <div class='col-lg-4 col-lg-offset-1'>
                     <h2>Añadir Descuento Nuevo</h2>   
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <label for='discountName'>Nombre del descuento:</label> 
                             <input class='form-control' type='text' name='discountName'><br>
-                            <label for='discount'>Descuento (en porcentaje):</label> 
-                            <input class='form-control' type='text' name='discount'>%.<br>
+                            <label for='discount'>Descuento (%):</label> 
+                            <input class='form-control' type='text' name='discount'>.<br>
                         
                             <input type='hidden' value='CreateDiscountDB' name='command'>
                             <button type='submit'  class='btn btn-danger' name='button' value='Añadir Descuento'>Añadir Descuento</button><br>                                    
@@ -129,9 +129,9 @@
                             for (Discount discount : discounts){
                     %>
 
-                        <p> <b>ID Descuento</b> <% out.print(discount.getId()); %>.
-                        <p> <b>Nombre Descuento</b> <% out.print(discount.getDiscountname()); %>.
-                        <b>Descuento:</b> <% out.print(discount.getDiscount()); %>.
+                        <b>ID Descuento</b> <% out.print(discount.getId()); %>.
+                        <b>Nombre Descuento</b> <% out.print(discount.getDiscountname()); %>.
+                        <b>Descuento:</b> <% out.print(discount.getDiscount()); %>%.
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type='hidden' value='RemoveDiscountDB' name='command'>
                             <input type='hidden' value='<% out.print(discount.getId());%>' name='discountID'>
@@ -139,19 +139,20 @@
                         </form>
 
                             <% } %>
-                        <% } %><br>
+                        <% } %>
                 </div>
             </div><br>
             
             <div class='row'>
-                <div class='col-lg-10 col-lg-offset-1'>
+                <div class='col-lg-4 col-lg-offset-1'>
                     <h2>Asignar Descuentos</h2>
                     <% if (books !=  null && !books.isEmpty()) {
                             for (Book book : books){
-                    %>
+                    %>  
+                        <br>
                         <p> <b>Libro: </b> <% out.print(book.getTitle()); %>.
                         <b>Author: </b> <% out.print(book.getAuthor()); %>.
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <form action='FrontControllerServlet' class='form-inline' role='form'>
                             <label for='discountID2'>Id del Descuento:</label> 
                             <input class='form-control' type='text' name='discountID2'>
                             <input type='hidden' value='AddDiscountToBookCommand' name='command'>

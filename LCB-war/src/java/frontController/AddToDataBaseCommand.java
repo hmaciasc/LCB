@@ -37,6 +37,7 @@ public class AddToDataBaseCommand extends FrontCommand {
                 book.setPublisher(publisher);
                 book.setPublishyear(Integer.parseInt(publishYear));
                 book.setPrice(Integer.parseInt(price));
+                book.setDiscountPrice(Double.parseDouble(price));
                 book.setCopy(Integer.parseInt(copies));
                 book.setIsbn(Integer.parseInt(isbn));
                 book.setCategory(category);

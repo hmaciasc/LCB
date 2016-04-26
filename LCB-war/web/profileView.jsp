@@ -21,7 +21,7 @@
         <link href="css/custom.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
-        <title>LCB - Error Page</title>
+        <title>Mi Perfil</title>
     </head>
     <body>
         <div class='container-fluid'>
@@ -35,17 +35,22 @@
             </div>
             <div class='row'>
                 <div class='col-lg-12 center-block'>
-                    <% String error = session.getAttribute("error").toString(); %>
-                    <% if(error != null && (!error.isEmpty() || error.length() > 0)){ %>
                     <br>
-                    <div class='center-block alert alert-warning col-lg-4' role="alert">
-                        
-                        <p><% out.print(error);%></p>
-                        <% session.setAttribute("error", ""); %>
-                        <% }else{ %>
-                            <p>No hay errores</p>
-                        <% } %>
-                    </div>  
+                    <div class='center-block alert alert-success col-lg-4' role="alert">
+                        <% Client client = (Client) session.getAttribute("client"); %>
+                        <% if(client != null){ %>
+                             Usuario: <% out.print(client.getMail()); %><br>
+                             Nombre: <% out.print(client.getName()); %><br>
+                             Apellido: <% out.print(client.getLastname()); %><br>
+                             Dirección de envío 1: <% out.print(client.getAddress1()); %><br>
+                             Dirección de envío 2:  <% out.print(client.getAddress2()); %><br>
+                       <% } %>
+                       <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
+                            <input type='hidden' value='ModifyProfileCommand' name='command'>
+                            <input type='hidden' value='<% client.getMail(); %>' name='email'>
+                            <input type='submit' class='btn btn-warning' name='profile' value='Editar perdil'>
+                       </form>
+                    </div>
                 </div>
             </div>
         </div>

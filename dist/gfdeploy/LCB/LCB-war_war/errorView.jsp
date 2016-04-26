@@ -35,13 +35,17 @@
             </div>
             <div class='row'>
                 <div class='col-lg-12 center-block'>
-                    <% String error = session.getAttribute("error").toString();
-                    if(error != null && (!error.isEmpty() || error.length() > 0)){ %>
-                    <p><% out.print(error);%></p>
-                    <% }else{ %>
-                        <p>No hay errores</p>
-                    <% } %>
+                    <% String error = session.getAttribute("error").toString(); %>
+                    <% if(error != null && (!error.isEmpty() || error.length() > 0)){ %>
+                    <br>
+                    <div class='center-block alert alert-warning col-lg-4' role="alert">
                         
+                        <p><% out.print(error);%></p>
+                        <% session.setAttribute("error", ""); %>
+                        <% }else{ %>
+                            <p>No hay errores</p>
+                        <% } %>
+                    </div>  
                 </div>
             </div>
         </div>

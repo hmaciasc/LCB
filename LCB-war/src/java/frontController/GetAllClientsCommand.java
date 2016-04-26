@@ -20,20 +20,18 @@ public class GetAllClientsCommand extends FrontCommand {
             HttpSession session = request.getSession();
             Client client = (Client) session.getAttribute("client");
             if(client == null || client.getIsadmin() == 0){
-                try {
-                    forward("/errorView.jsp");
-                } catch (ServletException | IOException ex) {
-                    Logger.getLogger(GetAllClientsCommand.class.getName()).log(Level.SEVERE, null, ex);
+                session.setAttribute("error", "No tienes privilegios de administrador.");
+                forward("/errorView.jsp");
+            }else{
+                ClientFacadeLocal clients = InitialContext.doLookup("java:global/LCB/LCB-ejb/ClientFacade");
+                List<Client> clientList = clients.findAll();
+                List<Client> list = new ArrayList<>();
+                for (Client client1 : clientList) {
+                    list.add(client1);
                 }
+                session.setAttribute("allClients", list);
+                forward("/userManagementView.jsp");
             }
-            ClientFacadeLocal clients = InitialContext.doLookup("java:global/LCB/LCB-ejb/ClientFacade");
-            List<Client> clientList = clients.findAll();
-            List<Client> list = new ArrayList<>();
-            for (Client client1 : clientList) {
-                list.add(client1);
-            }
-            session.setAttribute("allClients", list);
-            forward("/userManagementView.jsp");
         } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(GetAllClientsCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

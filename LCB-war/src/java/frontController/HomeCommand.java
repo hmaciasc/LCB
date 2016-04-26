@@ -27,7 +27,6 @@ import util.StatisticsBean;
  */
 public class HomeCommand extends FrontCommand{
     
-    
     @Override
     public void process() {
         try {
@@ -45,7 +44,6 @@ public class HomeCommand extends FrontCommand{
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new ShoppingCart();
-                //cart.initialize();
                 session.setAttribute("cart", cart);
             }
             
@@ -57,14 +55,14 @@ public class HomeCommand extends FrontCommand{
             
             session.setAttribute("bookCount", books.findAll().size());
             List<Book> bookList = getBooks(books, page);
-            ArrayList<Book> list= new ArrayList<>();
+            ArrayList<Book> list = new ArrayList<>();
             for (Book book : bookList) {
                 list.add(book);
             }
-            //request.setAttribute("books", list);
+
             session.setAttribute("allBooks", list);
             List<Book> allBooks = books.findAll();
-            list= new ArrayList<>();
+            list = new ArrayList<>();
             for (Book book : allBooks) {
                 list.add(book);
             }
@@ -76,6 +74,8 @@ public class HomeCommand extends FrontCommand{
                 lista.add(discount);
             }
             session.setAttribute("discounts", lista);
+            
+            session.setAttribute("error", "");
             
             forward("/indexView.jsp");
             } catch (ServletException | IOException | NamingException ex) {

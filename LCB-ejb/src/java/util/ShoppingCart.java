@@ -39,9 +39,9 @@ public class ShoppingCart implements ShoppingCartLocal, Serializable {
     public void addBookToCart(Book book) {
         if (book != null) {
             bookList.add(book);
-            System.out.println("PRECIO: "+ book.getPrice());
+            System.out.println("PRECIO: "+ book.getDiscountPrice());
             System.out.println("Tamaño: " + bookList.size());
-            cost += book.getPrice();
+            cost += book.getDiscountPrice();
         }
     }
 
@@ -49,7 +49,7 @@ public class ShoppingCart implements ShoppingCartLocal, Serializable {
     public void removeFromCart(String title) {
         for (Book book : bookList) {
             if (book.getTitle().equals(title)) {
-                cost -= book.getPrice();
+                cost -= book.getDiscountPrice();
                 bookList.remove(book);
                 break;
             }

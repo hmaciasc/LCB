@@ -3,6 +3,7 @@ package frontController;
 import controller.DiscountFacadeLocal;
 import entity.Discount;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -16,7 +17,6 @@ public class CreateDiscountDB extends FrontCommand{
         try {
             DiscountFacadeLocal DBConnection = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
             Discount discounts = new Discount();
-            Discount find;
             
             String discountName = request.getParameter("discountName");
             String discount = request.getParameter("discount");
@@ -25,11 +25,9 @@ public class CreateDiscountDB extends FrontCommand{
                 discounts.setDiscountname(discountName);
                 discounts.setDiscount(Integer.parseInt(discount));
                 
-                find = DBConnection.find(discountName);
-                System.out.println("hola");
-                if (find == null){
-                    DBConnection.create(discounts);
-                }
+                
+                DBConnection.create(discounts);
+                
             }
             
             forward("/FrontControllerServlet?command=HomeCommand");

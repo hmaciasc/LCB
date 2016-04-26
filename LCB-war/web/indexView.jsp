@@ -17,7 +17,6 @@
 <html>
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-formhelpers.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
@@ -93,125 +92,61 @@
                         <input type='hidden' value='ShowReservationsCommand' name='command'>
                         <button type='submit' class='btn btn-default'>Ver Reservas</button>
                     </form>
-                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                        <input type='hidden' value='ShowSuggestionsCommand' name='command'>
-                        <button type='submit' class='btn btn-default'>Ver Recomendaciones</button>
-                    </form>
                 </div>
                 <% } %>
             </div>
             <div class='container row-fluid center-block'>
-                <% ArrayList<Book> books = (ArrayList) session.getAttribute("allBooks");
+                <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
                     if (books !=  null && !books.isEmpty()) {
                         for (Book book : books){
                 %>
                 <div class='col-lg-4'>
                     <div class='book'>
                         <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive">
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-sm-6 tittles">
-                                TÍTULO
-                            </div>
-                            <div class="col-sm-6 bookDescription">
-                                <p> <% out.print(book.getTitle()); %> </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 tittles">
-                                <p>AUTOR</p>
-                            </div>
-                            <div class="col-sm-6 bookDescription">
-                                <p> <% out.print(book.getAuthor()); %> </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 tittles">
-                                <p>PRECIO</p>
-                            </div>
-                            <div class="col-sm-6 bookDescription">
-                                <p> <% out.print(book.getPrice()); %> €</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 tittles">
-                                <p>VALORACIÓN</p>
-                            </div>
-                            <div class="col-sm-6 bookDescription">
-                                <% if (book.getUsersvalue() == null) { %>
-                                    <p> <% out.print("Sin valorar"); %> </p>
-                                <% } else { %>
-                                    <p> <% out.print(book.getUsersvalue()); %> </p>
-                                <% } %>
-                            </div>
-                        </div>
-                            
-                        <% if (client != null) { %>
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                            <input type="hidden" value="BookValueCommand" name="command" />
-                            <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
-                            <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    1 <input type="radio"  name="bookValue" value="1"/>
-                                    2 <input type="radio"  name="bookValue" value="2"/>
-                                    3 <input type="radio"  name="bookValue" value="3"/>
-                                    4 <input type="radio"  name="bookValue" value="4"/>
-                                    5 <input type="radio"  name="bookValue" value="5"/>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-warning btn-sm" type="submit"><span class='glyphicon glyphicon-star'></span></button>
-                                    <!--<input type="submit" class='btn btn-info' style="width: 150px;" value="valorar" />-->
-                                </div>
-                            </div>
-                        </form>
-                        
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                <button class="btn btn-danger btn-sm" type="submit"><span class='glyphicon glyphicon-heart'></span></button>
-                        </form>
-
+                        <p> <% out.print(book.getTitle()); %> </p>
+                        <p> <% out.print(book.getAuthor()); %> </p>
+                        <p> <% out.print(book.getCopy()); %> copias </p>
+                        <p> <% out.print(book.getDiscountPrice()); %> €</p>
+                        <p> <% out.print(book.getCategory()); %> </p>
+                        <% if (book.getUsersvalue() == null) { %>
+                            <p> <% out.print("Valoración: Sin valorar"); %> </p>
+                        <% } else { %>
+                            <p> <% out.print("Valoración: " + book.getUsersvalue()); %> </p>
                         <% } %>
-                        <%  if (book.getCopy() <= 0) {   %>
+                            <%  if (book.getCopy() <= 0) {   %>
+                                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                    <input type='hidden' value='ReserveBookCommand' name='command'>
+                                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
+                                    <button type='submit' class='btn btn-warning'>Reservar</button>
+                                </form><br>
+                            <%  } else {   %>
                             <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                <input type='hidden' value='ReserveBookCommand' name='command'>
+                                <input type='hidden' value='AddToCartCommand' name='command'>
                                 <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                <button type='submit' class='btn btn-info' style="margin-top: 10px;">Reservar</button>
+                                <button type='submit' class='btn btn-primary'>Añadir al carrito</button>
                             </form><br>
-                        <%  } else {   %>
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                            <input type='hidden' value='AddToCartCommand' name='command'>
-                            <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control bfh-number" data-min="1" data-max="<% out.print(book.getCopy()); %>" data-wrap="true" name="nCopies">
-                                </div>
-                                <div class="col-sm-6 col-sm-offset-1">
-                                    <button type='submit' class='btn btn-primary' style="width: 150px;">Añadir al carrito</button>
-                                </div>
-                            </div>
-                        </form><br>
+                            <% } %>
+                            <% if (client != null) { %>
+                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type="hidden" value="BookValueCommand" name="command" />
+                                <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
+                                <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
+                                1 <input type="radio"  name="bookValue" value="1"/>
+                                2 <input type="radio"  name="bookValue" value="2"/>
+                                3 <input type="radio"  name="bookValue" value="3"/>
+                                4 <input type="radio"  name="bookValue" value="4"/>
+                                5 <input type="radio"  name="bookValue" value="5"/>
+                                <input type="submit" class='btn btn-info' value="valorar" />
+                            </form>
                         
-                        <% } %>
+                            <% } %>
                     </div>
                 </div>
-                    <% } %>
                 <% } %>
-                    <% String numberOfBooks = String.valueOf(session.getAttribute("bookCount"));
-                    int bookCount = Integer.parseInt(numberOfBooks); %>
-                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                        <input type="hidden" value="HomeCommand" name="command" />
-                        <div class='text-center'>
-                            <ul class='pagination'>
-                                <li><input type='submit' class='btn btn-default' value='1' name='pageNumber'/></li>
-                                <% for (int i = 2; i <= Math.round((double) bookCount / 6); i++){ %>
-                                <li><input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'/></li>
-                                <% } %>
-                            </ul>
-                        </div>
-                    </form>
+                    <% } %>
             </div>
         </div>
         <script src='js/jquery.js'></script>
         <script src='js/bootstrap.min.js'></script>
-        <script src='js/bootstrap-formhelpers.js'></script>
     </body>
 </html>

@@ -51,7 +51,7 @@
                         <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive" width="304" height="236">
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
-                        <p> <% out.print(book.getPrice()); %> €</p>
+                        <p> <% out.print(book.getDiscountPrice()); %> €</p>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type="hidden" name="command" value="DeleteFromCart" />
                             <input type="hidden" name="bookTitle" value="<%out.print(book.getTitle());%>" />

@@ -42,7 +42,7 @@
                         <label for='publishYear'>Año de publicación</label> 
                         <input class='form-control' type='text' name='publishYear'><br>
                         <label for='price'>Precio</label> 
-                        <input class='form-control' type='text' name='price'><br>
+                        <input class='form-control' type='text' name='price'>€.<br>
                         <label for='copies'>Ejemplares</label> 
                         <input class='form-control' type='text' name='copies'><br>
                         <label for='isbn1'>ISBN</label> 
@@ -94,6 +94,7 @@
                         <b>Precio:</b> <% out.print(book.getPrice()); %> € .
                         <b>Categoría:</b> <% out.print(book.getCategory()); %>.
                         <b>ISBN:</b> <% out.print(book.getIsbn()); %>. 
+                        <b>Descuento:</b> <% out.print(book.getDiscountId().getDiscountname()); %>. 
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type='hidden' value='RemoveFromDataBaseCommand' name='command'>
                             <input type='hidden' value='<% out.print(book.getIsbn());%>' name='isbn2'>
@@ -107,12 +108,12 @@
             
             <div class='row'>
                 <div class='col-lg-10 col-lg-offset-1'>
-                    <h2>Añadir Oferta Nueva</h2>   
+                    <h2>Añadir Descuento Nuevo</h2>   
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <label for='discountName'>Nombre del descuento:</label> 
                             <input class='form-control' type='text' name='discountName'><br>
                             <label for='discount'>Descuento (en porcentaje):</label> 
-                            <input class='form-control' type='text' name='discount'><br>
+                            <input class='form-control' type='text' name='discount'>%.<br>
                         
                             <input type='hidden' value='CreateDiscountDB' name='command'>
                             <button type='submit'  class='btn btn-danger' name='button' value='Añadir Descuento'>Añadir Descuento</button><br>                                    
@@ -128,18 +129,47 @@
                             for (Discount discount : discounts){
                     %>
 
+                        <p> <b>ID Descuento</b> <% out.print(discount.getId()); %>.
                         <p> <b>Nombre Descuento</b> <% out.print(discount.getDiscountname()); %>.
                         <b>Descuento:</b> <% out.print(discount.getDiscount()); %>.
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type='hidden' value='RemoveDiscountDB' name='command'>
-                            <input type='hidden' value='<% out.print(discount.getDiscountname());%>' name='discountName2'>
+                            <input type='hidden' value='<% out.print(discount.getId());%>' name='discountID'>
                             <button type='submit'  class='btn btn-danger'>Eliminar</button>
+                        </form>
+
+                            <% } %>
+                        <% } %><br>
+                </div>
+            </div><br>
+            
+            <div class='row'>
+                <div class='col-lg-10 col-lg-offset-1'>
+                    <h2>Asignar Descuentos</h2>
+                    <% if (books !=  null && !books.isEmpty()) {
+                            for (Book book : books){
+                    %>
+                        <p> <b>Libro: </b> <% out.print(book.getTitle()); %>.
+                        <b>Author: </b> <% out.print(book.getAuthor()); %>.
+                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                            <label for='discountID2'>Id del Descuento:</label> 
+                            <input class='form-control' type='text' name='discountID2'>
+                            <input type='hidden' value='AddDiscountToBookCommand' name='command'>
+                            <input type='hidden' value='<% out.print(book.getIsbn());%>' name='isbn3'>
+                            <button type='submit'  class='btn btn-danger'>Asignar</button><br>
                         </form>
 
                             <% } %>
                         <% } %>
                 </div>
             </div><br>
+            
+            
+            
+            
+            
+            
+            
             <div class='row'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2>Gestión de usuarios</h2>

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author noe_s_000
+ * @author Famïa
  */
 @Embeddable
 public class BookValuesPK implements Serializable {

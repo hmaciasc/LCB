@@ -43,6 +43,8 @@ public class ModifyInDataBaseCommand extends FrontCommand{
             }
             if(price != ""){
                 book.setPrice(Integer.parseInt(price));
+                int cost = Integer.parseInt(price);
+                book.setDiscountPrice(cost - (cost * book.getDiscountId().getDiscount()/100));
             }
             if(copy != ""){
                 book.setCopy(Integer.parseInt(copy));

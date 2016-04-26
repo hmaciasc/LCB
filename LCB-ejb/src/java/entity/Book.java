@@ -10,6 +10,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author noe_s_000
+ * @author Famïa
  */
 @Entity
 @Table(name = "BOOK")
@@ -30,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
     @NamedQuery(name = "Book.findByPublisher", query = "SELECT b FROM Book b WHERE b.publisher = :publisher"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
+    @NamedQuery(name = "Book.findByDiscountPrice", query = "SELECT b FROM Book b WHERE b.discountPrice = :discountPrice"),
     @NamedQuery(name = "Book.findByCopy", query = "SELECT b FROM Book b WHERE b.copy = :copy"),
     @NamedQuery(name = "Book.findByValue", query = "SELECT b FROM Book b WHERE b.value = :value"),
     @NamedQuery(name = "Book.findByIsbn", query = "SELECT b FROM Book b WHERE b.isbn = :isbn"),
@@ -58,11 +61,13 @@ public class Book implements Serializable {
     @NotNull
     @Column(name = "PRICE")
     private int price;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "DISCOUNT_PRICE")
+    private Double discountPrice;
     @Basic(optional = false)
     @NotNull
     @Column(name = "COPY")
     private int copy;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VALUE")
     private Double value;
     @Id
@@ -81,6 +86,9 @@ public class Book implements Serializable {
     private int publishyear;
     @Column(name = "USERSVALUE")
     private Integer usersvalue;
+    @JoinColumn(name = "DISCOUNT_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Discount discountId;
 
     public Book() {
     }
@@ -132,6 +140,14 @@ public class Book implements Serializable {
         this.price = price;
     }
 
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
     public int getCopy() {
         return copy;
     }
@@ -180,6 +196,14 @@ public class Book implements Serializable {
         this.usersvalue = usersvalue;
     }
 
+    public Discount getDiscountId() {
+        return discountId;
+    }
+
+    public void setDiscountId(Discount discountId) {
+        this.discountId = discountId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -206,9 +230,8 @@ public class Book implements Serializable {
     }
     
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
-
     
 }

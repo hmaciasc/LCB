@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author noe_s_000
+ * @author Famïa
  */
 @Local
 public interface BookValuesFacadeLocal {

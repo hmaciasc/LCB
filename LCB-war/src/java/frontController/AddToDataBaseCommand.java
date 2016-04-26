@@ -1,7 +1,9 @@
 package frontController;
 
 import controller.BookFacadeLocal;
+import controller.DiscountFacadeLocal;
 import entity.Book;
+import entity.Discount;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,7 @@ public class AddToDataBaseCommand extends FrontCommand {
     public void process() {
         try {
             BookFacadeLocal DBConnection = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
+            DiscountFacadeLocal DBConnectionD = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
 
             Book book = new Book();
             Book find;
@@ -26,7 +29,8 @@ public class AddToDataBaseCommand extends FrontCommand {
             String price = request.getParameter("price");
             String category = request.getParameter("category");
             String isbn = request.getParameter("isbn1");
-
+            Integer noDiscount = 1;
+            Discount findDiscount = DBConnectionD.find(noDiscount);
             if (title != null && author != null && publisher != null && price != null && category != null) {
                 book.setTitle(title);
                 book.setAuthor(author);
@@ -36,6 +40,7 @@ public class AddToDataBaseCommand extends FrontCommand {
                 book.setCopy(Integer.parseInt(copies));
                 book.setIsbn(Integer.parseInt(isbn));
                 book.setCategory(category);
+                book.setDiscountId(findDiscount);
                 
                 find = DBConnection.find(Integer.parseInt(isbn));
                

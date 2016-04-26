@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author hmaci
+ * @author Famïa
  */
 @Entity
 @Table(name = "CLIENT")
@@ -39,10 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByIsadmin", query = "SELECT c FROM Client c WHERE c.isadmin = :isadmin")})
 public class Client implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
-    private Collection<Shopping> shoppingCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
-    private Collection<Starred> starredCollection;
     private static final long serialVersionUID = 1L;
     @Size(max = 50)
     @Column(name = "NAME")
@@ -69,6 +65,10 @@ public class Client implements Serializable {
     private String password;
     @Column(name = "ISADMIN")
     private Integer isadmin;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
+    private Collection<Shopping> shoppingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
+    private Collection<Starred> starredCollection;
 
     public Client() {
     }
@@ -138,6 +138,24 @@ public class Client implements Serializable {
         this.isadmin = isadmin;
     }
 
+    @XmlTransient
+    public Collection<Shopping> getShoppingCollection() {
+        return shoppingCollection;
+    }
+
+    public void setShoppingCollection(Collection<Shopping> shoppingCollection) {
+        this.shoppingCollection = shoppingCollection;
+    }
+
+    @XmlTransient
+    public Collection<Starred> getStarredCollection() {
+        return starredCollection;
+    }
+
+    public void setStarredCollection(Collection<Starred> starredCollection) {
+        this.starredCollection = starredCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -161,24 +179,6 @@ public class Client implements Serializable {
     @Override
     public String toString() {
         return "entity.Client[ mail=" + mail + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Shopping> getShoppingCollection() {
-        return shoppingCollection;
-    }
-
-    public void setShoppingCollection(Collection<Shopping> shoppingCollection) {
-        this.shoppingCollection = shoppingCollection;
-    }
-
-    @XmlTransient
-    public Collection<Starred> getStarredCollection() {
-        return starredCollection;
-    }
-
-    public void setStarredCollection(Collection<Starred> starredCollection) {
-        this.starredCollection = starredCollection;
     }
     
 }

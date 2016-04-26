@@ -51,7 +51,7 @@
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
                         <p> <% out.print(book.getCopy()); %> copias </p>
-                        <p> <% out.print(book.getPrice()); %> €</p>
+                        <p> <% out.print(book.getDiscountPrice()); %> €</p>
                         <p> <% out.print(book.getCategory()); %> </p>
                             <%  if (book.getCopy() <= 0) {   %>
                                 <form action='FrontControllerServlet' class='form-horizontal' role='form'>

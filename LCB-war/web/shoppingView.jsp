@@ -39,7 +39,7 @@
                                     <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive">
                                     <p> <% out.print(book.getTitle()); %> </p>
                                     <p> <% out.print(book.getAuthor()); %> </p>
-                                    <p> <% out.print(book.getPrice()); %> €</p>
+                                    <p> <% out.print(book.getDiscountPrice()); %> €</p>
                                 </div>
                             </div>
                         <% } %>

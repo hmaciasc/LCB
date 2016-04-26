@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author noe_s_000
+ * @author Famïa
  */
 @Stateless
 public class BookValuesFacade extends AbstractFacade<BookValues> implements BookValuesFacadeLocal {

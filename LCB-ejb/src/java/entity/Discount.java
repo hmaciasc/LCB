@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,25 +28,46 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Discount.findAll", query = "SELECT d FROM Discount d"),
+    @NamedQuery(name = "Discount.findById", query = "SELECT d FROM Discount d WHERE d.id = :id"),
     @NamedQuery(name = "Discount.findByDiscountname", query = "SELECT d FROM Discount d WHERE d.discountname = :discountname"),
     @NamedQuery(name = "Discount.findByDiscount", query = "SELECT d FROM Discount d WHERE d.discount = :discount")})
 public class Discount implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "DISCOUNTNAME")
     private String discountname;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "DISCOUNT")
-    private Integer discount;
+    private double discount;
 
     public Discount() {
     }
 
-    public Discount(String discountname) {
+    public Discount(Integer id) {
+        this.id = id;
+    }
+
+    public Discount(Integer id, String discountname, double discount) {
+        this.id = id;
         this.discountname = discountname;
+        this.discount = discount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDiscountname() {
@@ -55,18 +78,18 @@ public class Discount implements Serializable {
         this.discountname = discountname;
     }
 
-    public Integer getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Integer discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (discountname != null ? discountname.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -77,7 +100,7 @@ public class Discount implements Serializable {
             return false;
         }
         Discount other = (Discount) object;
-        if ((this.discountname == null && other.discountname != null) || (this.discountname != null && !this.discountname.equals(other.discountname))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -85,7 +108,7 @@ public class Discount implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Discount[ discountname=" + discountname + " ]";
+        return "entity.Discount[ id=" + id + " ]";
     }
     
 }

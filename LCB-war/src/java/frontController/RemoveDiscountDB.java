@@ -27,9 +27,9 @@ public class RemoveDiscountDB extends FrontCommand{
             DiscountFacadeLocal DBConnection = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
             Discount discounts;
             
-            String discountName = request.getParameter("discountName2");
+            String id = request.getParameter("discountID");
             
-            discounts = DBConnection.find(discountName);
+            discounts = DBConnection.find(id);
             
             if (discounts != null){
                 DBConnection.remove(discounts);

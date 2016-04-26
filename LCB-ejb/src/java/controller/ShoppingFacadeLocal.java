@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Soraya
+ * @author Famïa
  */
 @Local
 public interface ShoppingFacadeLocal {

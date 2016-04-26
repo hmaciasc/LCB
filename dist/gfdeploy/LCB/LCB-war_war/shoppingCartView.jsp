@@ -52,7 +52,7 @@
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
                         <p> <% out.print(book.getCopy()); %> copias </p>
-                        <p> <% out.print(book.getPrice()); %> €</p>
+                        <p> <% out.print(book.getDiscountPrice()); %> €</p>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type="hidden" name="command" value="DeleteFromCart" />
                             <input type="hidden" name="bookTitle" value="<%out.print(book.getTitle());%>" />

@@ -45,11 +45,29 @@
                              Dirección de envío 1: <% out.print(client.getAddress1()); %><br>
                              Dirección de envío 2:  <% out.print(client.getAddress2()); %><br>
                        <% } %>
-                       <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
+                    </div>
+                </div>
+            </div>
+            <div class='container row-fluid center-block'>
+                <div class='col-lg-4 col-lg-offset-2'>
+                    <div class='client'>
+                        <form action='FrontControllerServlet' method='post' class='form-horizontal' role='form'>
                             <input type='hidden' value='ModifyProfileCommand' name='command'>
-                            <input type='hidden' value='<% client.getMail(); %>' name='email'>
-                            <input type='submit' class='btn btn-warning' name='profile' value='Editar perdil'>
-                       </form>
+                            <input type='hidden' value='<% out.print(client.getMail());%>' name='clientEmail'>
+                            <label for="name">Nombre: </label> 
+                            <input type='text' class='form-control' value='<% out.print(client.getName());%>' name='name'>
+                            <label for="lastName">Apellido: </label> 
+                            <input type='text' class='form-control' value='<% out.print(client.getLastname());%>' name='lastName'>
+                            <label for="address1">Dirección 1: </label> 
+                            <input type='text' class='form-control' value='<% out.print(client.getAddress1());%>' name='address1'>
+                            <label for="address2">Dirección 2: </label> 
+                            <input type='text' class='form-control' value='<% out.print(client.getAddress2());%>' name='address2'>
+                            <label for="password1">Contraseña: </label> 
+                            <input type='password' class='form-control' value='' name='password1'>
+                            <label for="password2">Repetir contraseña: </label> 
+                            <input type='password' class='form-control' value='' name='password2'><br>
+                            <button type='submit' class='btn btn-danger'>Editar mi usuario</button>
+                        </form><br>
                     </div>
                 </div>
             </div>

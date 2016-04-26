@@ -11,6 +11,7 @@ import entity.Book;
 import entity.Discount;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,7 @@ import util.StatisticsBean;
  * @author maxi
  */
 public class HomeCommand extends FrontCommand{
-    
+
     @Override
     public void process() {
         try {
@@ -46,37 +47,40 @@ public class HomeCommand extends FrontCommand{
                 cart = new ShoppingCart();
                 session.setAttribute("cart", cart);
             }
-            
             if (request.getParameter("pageNumber") != null) {
                 page = Integer.parseInt(request.getParameter("pageNumber"));
-                Logger.getLogger(HomeCommand.class.getName()).log(Level.INFO, "Pagina: " + page);
-                
             }
-            
             session.setAttribute("bookCount", books.findAll().size());
+            
+            List<Integer> starred = (List<Integer>) session.getAttribute("starredList");
+            if (starred == null) {
+                starred = new LinkedList();
+                session.setAttribute("starredList", starred);
+            }
+
             List<Book> bookList = getBooks(books, page);
-            ArrayList<Book> list = new ArrayList<>();
+            ArrayList<Book> list= new ArrayList<>();
             for (Book book : bookList) {
                 list.add(book);
             }
-
-            session.setAttribute("allBooks", list);
+            
+            session.setAttribute("books", list);
             List<Book> allBooks = books.findAll();
             list = new ArrayList<>();
             for (Book book : allBooks) {
                 list.add(book);
             }
-            session.setAttribute("books", list);
-            
+            session.setAttribute("allBooks", list);
+
             List<Discount> discountList = discounts.findAll();
             ArrayList<Discount> lista= new ArrayList<>();
             for (Discount discount : discountList) {
                 lista.add(discount);
             }
             session.setAttribute("discounts", lista);
-            
+
             session.setAttribute("error", "");
-            
+
             forward("/indexView.jsp");
             } catch (ServletException | IOException | NamingException ex) {
                 Logger.getLogger(HomeCommand.class.getName()).log(Level.SEVERE, null, ex);

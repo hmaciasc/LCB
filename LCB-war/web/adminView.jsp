@@ -81,7 +81,7 @@
             <div class='row'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2>Eliminar libro</h2>
-                    <% ArrayList<Book> books = (ArrayList) session.getAttribute("books"); 
+                    <% ArrayList<Book> books = (ArrayList) session.getAttribute("allBooks"); 
                         if (books !=  null && !books.isEmpty()) {
                             for (Book book : books){
                     %>

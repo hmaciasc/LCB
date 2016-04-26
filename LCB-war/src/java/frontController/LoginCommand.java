@@ -2,8 +2,10 @@ package frontController;
 
 import controller.ClientFacadeLocal;
 import entity.Client;
+import entity.Starred;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -21,10 +23,17 @@ public class LoginCommand extends FrontCommand {
             String user = request.getParameter("user");
             Client client = clients.find(user);
             ArrayList<Client> list = new ArrayList<>();
+            ArrayList<Starred> starredList = new ArrayList<>();
             if(client != null && request.getParameter("password").equals(client.getPassword())){
                 list.add(client);
+                Collection<Starred> starreds = client.getStarredCollection();
+                for (Starred starred : starreds) {
+                    starredList.add(starred);
+                    break;
+                }
                 session.setAttribute("session", client.getMail());
                 session.setAttribute("client", client);
+                session.setAttribute("starredList", starredList);
             }else{
                 //session.setAttribute("session", "Error al autentificarse.");
             }

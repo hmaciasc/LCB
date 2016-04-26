@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Client;
+import entity.Starred;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author hmaci
  */
 @Stateless
-public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
+public class StarredFacade extends AbstractFacade<Starred> implements StarredFacadeLocal {
     @PersistenceContext(unitName = "LCB-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         return em;
     }
 
-    public ClientFacade() {
-        super(Client.class);
+    public StarredFacade() {
+        super(Starred.class);
     }
     
 }

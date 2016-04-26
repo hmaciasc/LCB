@@ -86,6 +86,10 @@
                     <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
                     <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
                     <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <input type='hidden' value='ShowStarredCommand' name='command'>
+                        <button type='submit' class='btn btn-default'>Favoritos</button>
+                    </form>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <input type='hidden' value='ShowCartCommand' name='command'>
                         <button type='submit' class='btn btn-default'>Ver Carrito</button>
                     </form>
@@ -140,38 +144,16 @@
                                 <% } %>
                             </div>
                         </div>
-                            
-                        <% if (client != null) { %>
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                            <input type="hidden" value="BookValueCommand" name="command" />
-                            <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
-                            <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    1 <input type="radio"  name="bookValue" value="1"/>
-                                    2 <input type="radio"  name="bookValue" value="2"/>
-                                    3 <input type="radio"  name="bookValue" value="3"/>
-                                    4 <input type="radio"  name="bookValue" value="4"/>
-                                    5 <input type="radio"  name="bookValue" value="5"/>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-warning btn-sm" type="submit"><span class='glyphicon glyphicon-star'></span></button>
-                                    <!--<input type="submit" class='btn btn-info' style="width: 150px;" value="valorar" />-->
-                                </div>
-                            </div>
-                        </form>
                         
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                <button class="btn btn-danger btn-sm" type="submit"><span class='glyphicon glyphicon-heart'></span></button>
-                        </form>
-
-                        <% } %>
+                            
                         <%  if (book.getCopy() <= 0) {   %>
-                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                <input type='hidden' value='ReserveBookCommand' name='command'>
-                                <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                <button type='submit' class='btn btn-info' style="margin-top: 10px;">Reservar</button>
-                            </form><br>
+                            <div class="col-sm-6">
+                                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                    <input type='hidden' value='ReserveBookCommand' name='command'>
+                                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
+                                    <button type='submit' class='btn btn-info'>Reservar</button>
+                                </form><br>
+                            </div>
                         <%  } else {   %>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                             <input type='hidden' value='AddToCartCommand' name='command'>
@@ -187,6 +169,39 @@
                         </form><br>
                         
                         <% } %>
+                        
+                        
+                        <% if (client != null) { %>
+                        
+                        <div class="col-sm-6">
+                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type="hidden" value="StarredCommand" name="command" />
+                                <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
+                                <button class="btn btn-danger btn-sm" type="submit"><span class='glyphicon glyphicon-heart'></span></button>
+                            </form>
+                        </div>
+                        
+                        <div class="col-sm-12">
+                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <input type="hidden" value="BookValueCommand" name="command" />
+                                <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
+                                <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
+                                <div class="row">
+                                    <div>
+                                        1 <input type="radio"  name="bookValue" value="1"/>
+                                        2 <input type="radio"  name="bookValue" value="2"/>
+                                        3 <input type="radio"  name="bookValue" value="3"/>
+                                        4 <input type="radio"  name="bookValue" value="4"/>
+                                        5 <input type="radio"  name="bookValue" value="5"/>
+
+                                        <button class="btn btn-warning btn-sm" type="submit"><span class='glyphicon glyphicon-star'></span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        <% } %>
+                        
                     </div>
                 </div>
                 <% } %>

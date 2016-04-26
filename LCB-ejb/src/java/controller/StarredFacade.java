@@ -28,5 +28,5 @@ public class StarredFacade extends AbstractFacade<Starred> implements StarredFac
     public StarredFacade() {
         super(Starred.class);
     }
-    
+
 }

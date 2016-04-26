@@ -11,6 +11,7 @@ import entity.Book;
 import entity.Discount;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +46,12 @@ public class HomeCommand extends FrontCommand{
                 cart = new ShoppingCart();
                 //cart.initialize();
                 session.setAttribute("cart", cart);
+            }
+            
+            List<Integer> starred = (List<Integer>) session.getAttribute("starredList");
+            if (starred == null) {
+                starred = new LinkedList();
+                session.setAttribute("starredList", starred);
             }
 
             List<Book> bookList = books.findAll();

@@ -8,9 +8,11 @@ package frontController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import pdf.PdfHandler;
 import util.ShoppingCart;
 
 /**
@@ -22,11 +24,15 @@ public class PayCommand extends FrontCommand{
     @Override
     public void process() {
         try {
-            //HttpSession session = request.getSession(true);
-            //ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            
             String method = request.getParameter("paySelector");
             request.setAttribute("price", request.getAttribute("price"));
+            
+            HttpSession session = request.getSession(true);
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            PdfHandler pdf = new PdfHandler(cart);
+            
+            session.setAttribute("bill", pdf.getAbsolutePath());
+            
             if (method.equals("Paypal")) {
                 forward("/paypalPaymentView.jsp");
             } else {

@@ -16,6 +16,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import pdf.PdfHandler;
+import util.ShoppingCart;
+
 
 /**
  *
@@ -26,12 +29,12 @@ public class PayCommand extends FrontCommand{
     @Override
     public void process() {
         try {
-            HttpSession session = request.getSession(true);
-            //ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            
+            HttpSession session = request.getSession();
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+
             DiscountFacadeLocal DBConnectionD = InitialContext.doLookup("java:global/LCB/LCB-ejb/DiscountFacade");
             Discount discount = new Discount();
-            
+
             String discountCode = request.getParameter("discountCode");
             discount = DBConnectionD.find(Integer.parseInt(discountCode));
             Double price = Double.parseDouble(request.getParameter("price"));
@@ -41,10 +44,14 @@ public class PayCommand extends FrontCommand{
                 Long l = new Long(java.lang.Math.round(price));
                 price = l.doubleValue();
                 price = price/java.lang.Math.pow(10, 2);
-                
+
             }
             String method = request.getParameter("paySelector");
             session.setAttribute("price", price);
+
+            PdfHandler pdf = new PdfHandler(cart);
+
+            session.setAttribute("bill", pdf.getAbsolutePath());
             if (method.equals("Paypal")) {
                 forward("/paypalPaymentView.jsp");
             } else {

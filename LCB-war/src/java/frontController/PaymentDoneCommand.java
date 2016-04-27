@@ -26,7 +26,6 @@ public class PaymentDoneCommand extends FrontCommand{
             cart = new ShoppingCart();
             //cart.initialize();
             session.setAttribute("cart", cart);
-            
             request.setAttribute("paidMessage", "Pedido pagado satisfactoriamente");
             forward("/indexView.jsp");
         } catch (ServletException | IOException ex) {

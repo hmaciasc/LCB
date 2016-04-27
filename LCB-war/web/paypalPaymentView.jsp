@@ -38,6 +38,12 @@
                 </div>
             </div>
             <div class='row'>
+                <div class='col-lg-2 col-lg-offset-4'>
+                    <% String path = (String) session.getAttribute("bill"); %>
+                    <br><h4><a href='<% out.print(path); %>'>Dirección a la factura</a></h4>
+                </div>
+            </div>
+            <div class='row'>
                 <div class='col-lg-4 col-lg-offset-4 paymentInfoWrapper'>
                     <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                         <% //session.setAttribute("cart", null); %>

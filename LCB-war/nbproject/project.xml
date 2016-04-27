@@ -10,15 +10,15 @@
                     <file>${reference.LCB-ejb.dist}</file>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.itextpdf-5.5.9.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.itext-pdfa-5.5.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.itext-xtra-5.5.9.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.itextpdf-5.5.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

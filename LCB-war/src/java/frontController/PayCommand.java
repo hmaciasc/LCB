@@ -8,8 +8,6 @@ package frontController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.jms.Session;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import pdf.PdfHandler;
@@ -27,7 +25,7 @@ public class PayCommand extends FrontCommand{
             String method = request.getParameter("paySelector");
             request.setAttribute("price", request.getAttribute("price"));
             
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             PdfHandler pdf = new PdfHandler(cart);
             

@@ -31,7 +31,7 @@
                         <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
                         <a> Carrito: <% out.print(cart.getCart().size()); %> productos</a>
                         <div class='priceWrapper'>
-                            <h2> Total a pagar: <% out.print(cart.getCost()); %> €</h2>
+                            <h2> Total a pagar: <% out.print(session.getAttribute("price")); %> €</h2>
                         </div>
                     </div>
                 </div>

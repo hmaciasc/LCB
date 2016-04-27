@@ -3,6 +3,7 @@
     Created on : 13-mar-2016, 12:12:04
     Author     : maxi
 --%>
+<%@page import="entity.Discount"%>
 <%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="controller.BookFacade"%>
@@ -85,6 +86,8 @@
                                 <option value='Paypal' selected='selected'>Paypal</option>
                                 <option value='Banco'>Tarjeta de Crédito/Débito</option>
                             </select><br>
+                            <label for='discountCode'>Introduzca codigo descuento</label>
+                            <input type='text' name='discountCode' class='form-control'>
                             <h3> Total a pagar: <% out.print(cart.getCost()); %> € </h3>
                             <button type='submit' class='btn btn-default'>Pagar</button>
                         </form>

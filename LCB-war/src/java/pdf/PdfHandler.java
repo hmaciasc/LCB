@@ -44,10 +44,14 @@ public class PdfHandler {
     private static final Font titleFont = new Font(Font.FontFamily.COURIER, 18,Font.NORMAL);
     private static final Font thankFont = new Font(Font.FontFamily.HELVETICA, 20, Font.ITALIC);
     private static final Font normalFont = new Font(Font.FontFamily.COURIER, 12, Font.NORMAL);
+    private Double discount;
+    private Double priceWithDiscount;
 
-    public PdfHandler(ShoppingCart cart) {
+    public PdfHandler(ShoppingCart cart, Double discount, Double priceWithDiscount) {
         this.cart = cart;
         this.pdf = new Document(PageSize.A4);
+        this.discount = discount;
+        this.priceWithDiscount = priceWithDiscount;
         try {
             String dir = System.getProperty("user.home") + "/Desktop";
             File file = new File(dir+"/"+path);
@@ -113,6 +117,9 @@ public class PdfHandler {
         pdf.add(new Chunk(ls));
         addTax(cart);
         createTotal(cart);
+        if (!discount.equals(0.0) && discount != null) {
+            createTotalWithDiscount(cart);
+        }
         pdf.add(new Chunk(ls));
         pdf.add(table);
         pdf.add(new Chunk(ls));
@@ -148,6 +155,18 @@ public class PdfHandler {
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.FLOOR);
         p.add(String.valueOf(df.format(cart.getCost()* 0.07)));
+        pdf.add(p);
+    }
+    
+    private void createTotalWithDiscount(ShoppingCart cart) throws DocumentException{
+        Paragraph p = new Paragraph();
+        p.setFont(normalFont);
+        p.add(String.format("%-60s", "Total a pagar con descuento del " + discount + "%: ", titleFont));
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.FLOOR);
+        
+        p.add(String.valueOf((double) Math.round((priceWithDiscount + (priceWithDiscount * 0.07)) * 100) / 100));
+       // p.add(String.valueOf(cart.getCost() + cart.getCost() * 0.07));
         pdf.add(p);
     }
     

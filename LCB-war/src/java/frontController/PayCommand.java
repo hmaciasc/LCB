@@ -49,7 +49,7 @@ public class PayCommand extends FrontCommand{
             String method = request.getParameter("paySelector");
             session.setAttribute("price", price);
 
-            PdfHandler pdf = new PdfHandler(cart);
+            PdfHandler pdf = new PdfHandler(cart, discount.getDiscount(), price);
 
             session.setAttribute("bill", pdf.getAbsolutePath());
             if (method.equals("Paypal")) {

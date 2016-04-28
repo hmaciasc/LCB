@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 public class AddToDataBaseCommand extends FrontCommand {
 
@@ -47,12 +48,16 @@ public class AddToDataBaseCommand extends FrontCommand {
                
                 if (find == null){
                     DBConnection.create(book);                    
+                    forward("/FrontControllerServlet?command=HomeCommand");
+                }else{
+                    HttpSession session = request.getSession(false);
+                    session.setAttribute("error", "Ya existe ese libro");
+                    forward("/errorView.jsp");
                 }
                 
             }
             
             
-            forward("/FrontControllerServlet?command=HomeCommand");
             
             
         } catch (NamingException | ServletException | IOException ex) {

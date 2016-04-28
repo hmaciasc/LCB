@@ -6,8 +6,11 @@
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/LoginCommand.java</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/AddToCartCommand.java</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/indexView.jsp</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/AddToDataBaseCommand.java</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/BookValueCommand.java</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/errorView.jsp</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/adminView.jsp</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/SearchCommand.java</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/HomeCommand.java</file>
         </group>
     </open-files>

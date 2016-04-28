@@ -38,14 +38,16 @@ public class RegisterCommand extends FrontCommand{
                     list.add(newClient);
                     session.setAttribute("session", request.getParameter("user"));
                     session.setAttribute("client", newClient);
+                    request.setAttribute("clients", list);
+                    forward("/loginView.jsp");
                 }else{
-                    session.setAttribute("session", "El usuario ya existe.");
+                    session.setAttribute("error", "El usuario ya existe.");
+                    forward("/errorView.jsp");
                 }
             }else{
-                session.setAttribute("session", "Error al autentificarse.");
+                session.setAttribute("error", "Error al autentificarse.");
+                forward("/errorView.jsp");
             }
-            request.setAttribute("clients", list);
-            forward("/loginView.jsp");
         } catch (NamingException ex) {
             System.out.println("NOPE");
         } catch (ServletException | IOException ex) {

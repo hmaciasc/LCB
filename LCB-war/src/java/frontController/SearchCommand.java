@@ -6,15 +6,12 @@
 package frontController;
 
 //import NewServlet;
-import controller.BookFacadeLocal;
 import entity.Book;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,11 +41,12 @@ public class SearchCommand extends FrontCommand {
                     list.add(book);
                 }
                 session.setAttribute("searchResult", list);
+                em.close();
+                forward("/searchView.jsp");
             }else{
-                session.setAttribute("searchResult", null);
+                session.setAttribute("error", "No existe ningun libro que cumpla el criterio de búsqueda, inténtelo otra vez");
+                forward("/errorView.jsp");
             }
-            em.close();
-            forward("/searchView.jsp");
         } catch (ServletException | IOException ex) {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -34,11 +34,18 @@ public class LoginCommand extends FrontCommand {
                 session.setAttribute("session", client.getMail());
                 session.setAttribute("client", client);
                 session.setAttribute("starredList", starredList);
+                request.setAttribute("clients", list);
+                forward("/loginView.jsp");
             }else{
-                //session.setAttribute("session", "Error al autentificarse.");
+                String message = "";
+                if (client == null) {
+                    message = "El usuario no existe";
+                } else {
+                    message = "Contraseña incorrecta";
+                }
+                session.setAttribute("error", message);
+                forward("/errorView.jsp");
             }
-            request.setAttribute("clients", list);
-            forward("/loginView.jsp");
         } catch (NamingException ex) {
             System.out.println("NOPE");
         } catch (ServletException | IOException ex) {

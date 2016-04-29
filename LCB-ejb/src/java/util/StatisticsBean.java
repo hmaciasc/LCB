@@ -10,7 +10,6 @@ import controller.BookValuesFacadeLocal;
 import controller.ClientFacadeLocal;
 import controller.ShoppingFacadeLocal;
 import entity.Book;
-import entity.BookValues;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

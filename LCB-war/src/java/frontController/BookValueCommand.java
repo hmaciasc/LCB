@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 public class BookValueCommand extends FrontCommand {
 
@@ -31,11 +32,16 @@ public class BookValueCommand extends FrontCommand {
         }
         userMail = (String) request.getParameter("clientMail");
         bookIsbn = Integer.parseInt(request.getParameter("bookIsbn"));
-        value = Integer.parseInt(request.getParameter("bookValue"));
-        addBookValue();
-        
         try {
-            forward("/FrontControllerServlet?command=HomeCommand");
+            if (request.getParameter("bookValue") == null) {
+                HttpSession session = request.getSession(false);
+                session.setAttribute("error", "No has seleccionado una puntuación");
+                forward("/errorView.jsp");
+            }else{
+                value = Integer.parseInt(request.getParameter("bookValue"));
+                addBookValue();
+                forward("/FrontControllerServlet?command=HomeCommand");
+            }
         } catch (ServletException | IOException ex) {
             Logger.getLogger(BookValueCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

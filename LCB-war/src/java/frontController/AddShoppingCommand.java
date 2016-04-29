@@ -28,8 +28,13 @@ public class AddShoppingCommand extends FrontCommand{
                     id.add(shop.getId());
                 }
             }
-            session.setAttribute("idShopping", id);
-            forward("/shoppingListView.jsp");
+            if (id.isEmpty()) {
+                session.setAttribute("error", "No has realizado compras aún");
+                forward("/errorView.jsp");
+            }else{
+                session.setAttribute("idShopping", id);
+                forward("/shoppingListView.jsp");
+            }
         } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(AddShoppingCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

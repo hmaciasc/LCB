@@ -24,8 +24,7 @@ public class ShowSuggestionsCommand extends FrontCommand {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCB-ejbPU");
             EntityManager em = emf.createEntityManager();
             
-//            String search = getParameter("search").toLowerCase();
-            String query = "SELECT b FROM Book b ORDER BY b.usersvalue DESC";
+            String query = "SELECT b FROM Book b WHERE b.usersvalue IS NOT NULL ORDER BY b.usersvalue DESC";
             List<Book> searchList = em.createQuery(query).getResultList();
             if(!searchList.isEmpty()){
                 for (Book book : searchList) {
@@ -42,14 +41,5 @@ public class ShowSuggestionsCommand extends FrontCommand {
         } catch (ServletException | IOException ex) {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private Client getClient(HttpSession session) {
-        return (Client) session.getAttribute("client");
-    }
-
-    private String getParameter(String search) {
-        return request.getParameter(search);
-    }
-    
+    }    
 }

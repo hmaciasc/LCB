@@ -53,6 +53,7 @@
                         <p> <% out.print(book.getCopy()); %> copias </p>
                         <p> <% out.print(book.getPrice()); %> €</p>
                         <p> <% out.print(book.getCategory()); %> </p>
+                        <p> <% out.print(book.getUsersvalue()); %> </p>
                             <%  if (book.getCopy() <= 0) {   %>
                                 <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                     <input type='hidden' value='ReserveBookCommand' name='command'>

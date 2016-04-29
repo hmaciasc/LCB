@@ -34,8 +34,13 @@ public class ShowStarredCommand extends FrontCommand{
                 }
                     
             }
-            session.setAttribute("starredBooks", bookList);
-            forward("/starredView.jsp");
+            if (bookList.isEmpty()) {
+                session.setAttribute("error", "No has marcado ningún favorito aún.");
+                forward("/errorView.jsp");
+            }else{
+                session.setAttribute("starredBooks", bookList);
+                forward("/starredView.jsp");
+            }
             } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(ShowStarredCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

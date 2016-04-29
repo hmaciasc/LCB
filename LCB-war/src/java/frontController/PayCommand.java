@@ -36,15 +36,17 @@ public class PayCommand extends FrontCommand{
             Discount discount = new Discount();
 
             String discountCode = request.getParameter("discountCode");
-            discount = DBConnectionD.find(Integer.parseInt(discountCode));
             Double price = Double.parseDouble(request.getParameter("price"));
-            if(discount != null){
-                price = price - (price * discount.getDiscount()/100);
-                price = price*(java.lang.Math.pow(10, 2));
-                Long l = new Long(java.lang.Math.round(price));
-                price = l.doubleValue();
-                price = price/java.lang.Math.pow(10, 2);
+            if(discountCode != ""){
+                discount = DBConnectionD.find(Integer.parseInt(discountCode));
+                if(discount != null){
+                    price = price - (price * discount.getDiscount()/100);
+                    price = price*(java.lang.Math.pow(10, 2));
+                    Long l = new Long(java.lang.Math.round(price));
+                    price = l.doubleValue();
+                    price = price/java.lang.Math.pow(10, 2);
 
+                }
             }
             String method = request.getParameter("paySelector");
             session.setAttribute("price", price);

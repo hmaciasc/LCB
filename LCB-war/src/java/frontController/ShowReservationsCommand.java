@@ -25,7 +25,7 @@ public class ShowReservationsCommand extends FrontCommand{
             String user = (String) session.getAttribute("session");
             userReservationList = new ArrayList<>();
             List <Reservation> allReservations = (List) reservations.findAll();
-            if (allReservations == null || allReservations.isEmpty()) {
+            if (allReservations.isEmpty()) {
                 session.setAttribute("error", "No has reservado nada aún");
                 forward("/errorView.jsp");
             }else{
@@ -33,6 +33,10 @@ public class ShowReservationsCommand extends FrontCommand{
                     if (reservation.getUsername().equals(user)) {
                         userReservationList.add(reservation);
                     }
+                }
+                if (userReservationList.isEmpty()) {
+                    session.setAttribute("error", "No has reservado nada aún");
+                    forward("/errorView.jsp");
                 }
                 request.setAttribute("userReservations", userReservationList);
                 forward("/reservationsView.jsp");

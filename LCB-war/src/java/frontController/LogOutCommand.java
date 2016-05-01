@@ -28,7 +28,7 @@ public class LogOutCommand extends FrontCommand {
                 session.setAttribute(name, null);
         }
         try {
-            forward("/logOutView.jsp");
+            forward("/FrontControllerServlet?command=HomeCommand");
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LogOutCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

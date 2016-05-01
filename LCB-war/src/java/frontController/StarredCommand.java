@@ -55,7 +55,7 @@ public class StarredCommand extends FrontCommand{
                 
             }
 
-            forward("/indexView.jsp");
+            forward("/booksView.jsp");
         } catch (NamingException | ServletException | IOException ex) {
             Logger.getLogger(StarredCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -35,7 +35,7 @@ public class LoginCommand extends FrontCommand {
                 session.setAttribute("client", client);
                 session.setAttribute("starredList", starredList);
                 request.setAttribute("clients", list);
-                forward("/loginView.jsp");
+                forward("/booksView.jsp");
             }else{
                 String message = "";
                 if (client == null) {

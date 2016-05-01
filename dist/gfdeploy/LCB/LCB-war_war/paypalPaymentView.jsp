@@ -190,7 +190,7 @@
                         <li class="dropdown">
                             <% if(session.getAttribute("session") != null) { %>
                                 <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                                <li><a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a></li>
+                                <a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a>
                             <% } %>
                         </li>
                     </ul>

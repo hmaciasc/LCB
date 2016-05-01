@@ -164,7 +164,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mi cuenta <span class="caret"></span></a>
                             <% if(session.getAttribute("session") == null){ %>
-                                    <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu">
                                     <li><a href="loginView.jsp">Inicia Sesión</a></li>
                                     <li class="divider"></li>
                                     <li><a href="registerView.jsp">Registrarse</a></li>
@@ -199,7 +199,7 @@
                         <li class="dropdown">
                             <% if(session.getAttribute("session") != null) { %>
                                 <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                                <li><a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a></li>
+                                <a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a>
                             <% } %>
                         </li>
                     </ul>

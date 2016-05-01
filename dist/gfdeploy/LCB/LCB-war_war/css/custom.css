@@ -20,7 +20,7 @@ body{
 .book {
     height: 600px;
     margin: 0 auto;
-    border: 1px solid #cccccc;
+    //border: 1px solid #cccccc;
     padding-top: 5px;
     text-align: center;
     margin-top: 5px;
@@ -52,4 +52,9 @@ body{
 
 .payment {
     margin-top: 25px;
+}
+
+.book img {
+    width: 250px;
+    height: 380px;
 }

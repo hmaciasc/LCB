@@ -291,13 +291,18 @@
                                     <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />
                                     <div class="row">
                                         <div>
-                                            1 <input type="radio"  name="bookValue" value="1"/>
-                                            2 <input type="radio"  name="bookValue" value="2"/>
-                                            3 <input type="radio"  name="bookValue" value="3"/>
-                                            4 <input type="radio"  name="bookValue" value="4"/>
-                                            5 <input type="radio"  name="bookValue" value="5"/>
-
-                                            <button class="btn btn-warning btn-sm" type="submit"><span class='glyphicon glyphicon-star'></span></button>
+                                            <fieldset class="rating">
+                                                <input type="submit" id="star5" name="bookValue" value="5" />
+                                                <label for="star5">5 stars</label>
+                                                <input type="submit" id="star4" name="bookValue" value="4" />
+                                                <label for="star4">4 stars</label>
+                                                <input type="submit" id="star3" name="bookValue" value="3" />
+                                                <label for="star3">3 stars</label>
+                                                <input type="submit" id="star2" name="bookValue" value="2" />
+                                                <label for="star2">2 stars</label>
+                                                <input type="submit" id="star1" name="bookValue" value="1" />
+                                                <label for="star1">1 star</label>
+                                            </fieldset>
                                         </div>
                                     </div>
                                 </form>

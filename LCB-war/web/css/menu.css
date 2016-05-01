@@ -143,3 +143,12 @@ a:active {
 .listItems {
     list-style: none;
 }
+
+input[type="image"] {
+    width: 250px;
+    height: 380px;
+}
+
+.recommendations {
+    margin-bottom: 20px;
+}

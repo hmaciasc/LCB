@@ -15,11 +15,6 @@ body{
     margin: 0;
 }
 
-img {
-    width: 200px;
-    height: 320px;
-}
-
 .center-block {float: none !important}
 
 .book {
@@ -37,7 +32,7 @@ img {
 }
 
 .book-cart {
-    height: 460px;
+    height: 660px;
     margin: 0 auto;
     border: 1px solid #cccccc;
     text-align: center;
@@ -53,4 +48,8 @@ img {
 
 .details * {
     font-size: 20px;
+}
+
+.payment {
+    margin-top: 25px;
 }

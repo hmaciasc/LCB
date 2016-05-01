@@ -85,60 +85,71 @@
                                     </div>
                                 </li>
                                 <li class="col-sm-3">
-                                        <ul class='listItems'>
-                                            <li class="dropdown-header">Libros</li>
-                                            <li><div class="carousel slide" data-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
-                                                        int active = 1;
-                                                        if (books !=  null && !books.isEmpty()) {
-                                                            for (Book book : books){ %>
-                                                        <div class="item <% if (active == 1) out.print("active");%>">
-                                                            <form action='FrontControllerServlet' method='POST' role='form'>
-                                                                <input type='hidden' value='ShowBookDetailsCommand' name='command'/>
-                                                                <% active = 0; %>
-                                                                <input type='hidden' value='<% out.print(book.getIsbn()); %>' name='isbnDetails'/>
-                                                                <input type='image' src='covers/<% out.print((book.getTitle())+".jpg"); %>' class="img-responsive" alt="<% out.print(book.getTitle()); %>">
-                                                            </form>
-                                                        </div><!-- End Item -->
-                                                        <% } %>
+                                    <ul class='listItems'>
+                                        <li class="dropdown-header">Libros</li>
+                                        <li><div class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
+                                                    int active = 1;
+                                                    if (books !=  null && !books.isEmpty()) {
+                                                        for (Book book : books){ %>
+                                                    <div class="item <% if (active == 1) out.print("active");%>">
+                                                        <form action='FrontControllerServlet' method='POST' role='form'>
+                                                            <input type='hidden' value='ShowBookDetailsCommand' name='command'/>
+                                                            <% active = 0; %>
+                                                            <input type='hidden' value='<% out.print(book.getIsbn()); %>' name='isbnDetails'/>
+                                                            <input type='image' src='covers/<% out.print((book.getTitle())+".jpg"); %>' class="img-responsive" alt="<% out.print(book.getTitle()); %>">
+                                                        </form>
+                                                    </div><!-- End Item -->
                                                     <% } %>
-                                                </div><!-- End Carousel Inner -->
-                                            </div></li><!-- /.carousel -->
-                                            <li class="divider"></li>
-                                            <li><a href="booksView.jsp">Ver todos los libros <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-                                        </ul>
-                                        
+                                                <% } %>
+                                            </div><!-- End Carousel Inner -->
+                                        </div></li><!-- /.carousel -->
+                                        <li class="divider"></li>
+                                        <li ><a href="booksView.jsp" class='submitLink'>Ver todos los libros</a></li>
+                                    </ul>
+                                    <ul class='listItems'>
+                                        <li><div>
+                                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                                <input type='hidden' value='ShowSuggestionsCommand' name='command'>
+                                                <button type='submit' class='submitLink'>Ver Recomendaciones</button>
+                                            </form>
+                                        </div></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
 
                     </ul>
-                    
-                    <form action='FrontControllerServlet' class="navbar-form" method='POST' role="search">
-                        <ul class="nav navbar-nav">
-                            <li><input type='hidden' value='SearchCommand' name='command'></li>
-                            <li>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar" name="search" required>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <select name="select" class='form-control'>
-                                <option selected="selected" value="0">Título</option>
-                                <option value="1">Autor</option>
-                                <option value="2">Categoría</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </form>
-                    
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <form action='FrontControllerServlet' class="navbar-form" method='POST' role="search">
+                                <ul class="nav navbar-nav">
+                                    <li><input type='hidden' value='SearchCommand' name='command'></li>
+                                    <li>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Buscar" name="search" required>
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <select name="select" class='form-control'>
+                                        <option selected="selected" value="0">Título</option>
+                                        <option value="1">Autor</option>
+                                        <option value="2">Categoría</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </form>
+                        </li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav" style="padding-top: 8px">
                     <%  Client client = (Client) session.getAttribute("client");
                         if(client != null && client.getIsadmin() == 1){ %>
-                        <div class="navbar-header">
+                        <li><div class="navbar-header">
                             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
@@ -146,9 +157,9 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <a class='btn btn-danger' href='adminView.jsp'>Administrar Base de Datos</a>
-                        </div>
+                            </div></li>
                     <%  } %>
-                    
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mi cuenta <span class="caret"></span></a>
@@ -160,7 +171,7 @@
                                 </ul>   
                             <% }else{ %>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href='profileView.jsp'>Perfil</a></li>
+                                <a href='profileView.jsp'>Perfil</a>
                                 <li class="divider"></li>
                                 <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
                                     <input type='hidden' value='ShowStarredCommand' name='command'>

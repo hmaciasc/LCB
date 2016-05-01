@@ -33,7 +33,6 @@
                 </div>
             </div>
             
-            </div>
             <div class='container row-fluid center-block'>
                 <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
                     if (books !=  null && !books.isEmpty()) {
@@ -44,7 +43,7 @@
                         <form action='FrontControllerServlet' method='POST' role='form'>
                             <input type='hidden' value="ShowBookDetailsCommand" name="command"/>
                             <input type='hidden' value='<% out.print(book.getIsbn()); %>' name='isbnDetails'/>
-                            <input type="image" src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block"/>
+                            <input type="image" src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block" width="250" height="400"/>
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-sm-6 bookDescription center-block">
                                     <p> <% out.print(book.getTitle()); %> </p>
@@ -66,15 +65,16 @@
                         <% String numberOfBooks = String.valueOf(session.getAttribute("bookCount"));
                            Double bookCount = Double.parseDouble(numberOfBooks); %>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                        <input type="hidden" value="HomeCommand" name="command" />
-                        <div class='text-center'>
-                            <ul class='pagination'>
-                                <li><input type='submit' class='btn btn-default' value='1' name='pageNumber'/></li>
-                                <% for (int i = 2; i <= (int) Math.ceil(bookCount / 6); i++){ %>
-                                <li><input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'/></li>
-                                <% } %>
-                            </ul>
-                        </div>
+                            <input type="hidden" value="HomeCommand" name="command" />
+                            <input type="hidden" value="booksView.jsp" name="view" />
+                            <div class='text-center'>
+                                <ul class='pagination'>
+                                    <li><input type='submit' class='btn btn-default' value='1' name='pageNumber'/></li>
+                                    <% for (int i = 2; i <= (int) Math.ceil(bookCount / 6); i++){ %>
+                                    <li><input type='submit' class='btn btn-default' value='<% out.print(i); %>' name='pageNumber'/></li>
+                                    <% } %>
+                                </ul>
+                            </div>
                         </form>
                     </div>
                 </div>

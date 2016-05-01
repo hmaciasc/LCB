@@ -45,7 +45,7 @@
                             <ul class="dropdown-menu mega-dropdown-menu">
                                 <li class="col-sm-3">
                                     <form action='FrontControllerServlet' method='POST' role='form'>
-                                        <ul>
+                                        <ul class='listItems'>
                                             <li class="dropdown-header">Géneros</li>
                                             <li><input type='hidden' value='SearchCommand' name='command'/></li>
                                             <li><input type='submit' class='submitLink' value='Juvenil' name='genero'/></li>
@@ -57,14 +57,17 @@
                                     </form>
                                 </li>
                                 <li class="col-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Materias</li>
-                                        <li><a href="#">Idiomas</a></li>
-                                        <li><a href="#">Deportes</a></li>
-                                        <li><a href="#">Tecnología</a></li>
-                                        <li><a href="#">Informática</a></li>
-                                        <li><a href="#">Oposiciones</a></li>
-                                    </ul>
+                                    <form action='FrontControllerServlet' method='POST' role='form'>
+                                        <ul class='listItems'>
+                                            <li class="dropdown-header">Materias</li>
+                                            <li><input type='hidden' value='SearchCommand' name='command'/></li>
+                                           <li><input type='submit' class='submitLink' value='Idiomas' name='genero'/></li>
+                                           <li><input type='submit' class='submitLink' value='Deportes' name='genero'/></li>
+                                           <li><input type='submit' class='submitLink' value='Tecnologia' name='genero'/></li>
+                                           <li><input type='submit' class='submitLink' value='Informatica' name='genero'/></li>
+                                           <li><input type='submit' class='submitLink' value='Oposiciones' name='genero'/></li>
+                                        </ul>
+                                    </form>
                                 </li>
                                 <li class="col-sm-3">
                                     <ul>
@@ -77,54 +80,66 @@
                                     </ul>
                                 </li>
                                 <li class="col-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Libros</li>
-                                        <div class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <div class="item active">
-                                                    <a href="#"><img src="covers/Harry Potter 1.jpg" class="img-responsive" alt="product 1"></a>
-                                                </div><!-- End Item -->
-                                                <div class="item">
-                                                    <a href="#"><img src="covers/Harry Potter 2.jpg" class="img-responsive" alt="product 2"></a>
-                                                </div><!-- End Item -->
-                                                <div class="item">
-                                                    <a href="#"><img src="covers/Harry Potter 3.jpg" class="img-responsive" alt="product 3"></a>
-                                                </div><!-- End Item -->
-                                            </div><!-- End Carousel Inner -->
-                                        </div><!-- /.carousel -->
-                                        <li class="divider"></li>
-                                        <li><a href="booksView.jsp">Ver todos los libros <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-                                    </ul>
+                                    <form action='FrontControllerServlet' method='POST' role='form'>
+                                        <ul class='listItems'>
+                                            <li><input type='hidden' value='SearchCommand' name='command'/></li>
+                                            <li class="dropdown-header">Libros</li>
+                                            <li><div class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="item active">
+                                                        <a href='bookDetailsView.jsp'><img src="covers/Harry Potter 1.jpg" class="img-responsive" alt="product 1"></a>
+                                                    </div><!-- End Item -->
+                                                    <div class="item">
+                                                        <a href="bookDetailsView.jsp"><img src="covers/Harry Potter 2.jpg" class="img-responsive" alt="product 2"></a>
+                                                    </div><!-- End Item -->
+                                                    <div class="item">
+                                                        <a href="bookDetailsView.jsp"><img src="covers/Harry Potter 3.jpg" class="img-responsive" alt="product 3"></a>
+                                                    </div><!-- End Item -->
+                                                </div><!-- End Carousel Inner -->
+                                            </div></li><!-- /.carousel -->
+                                            <li class="divider"></li>
+                                            <li><a href="booksView.jsp">Ver todos los libros <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+                                        </ul>
+                                    </form>
                                 </li>
                             </ul>
                         </li>
 
                     </ul>
                     
-                    <ul class="nav navbar-nav">
-                        <form action='FrontControllerServlet' class="navbar-form" method='POST' role="search">
-                            <input type='hidden' value='SearchCommand' name='command'>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar" name="search" required>
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    <form action='FrontControllerServlet' class="navbar-form" method='POST' role="search">
+                        <ul class="nav navbar-nav">
+                            <li><input type='hidden' value='SearchCommand' name='command'></li>
+                            <li>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Buscar" name="search" required>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <select name="select" class='form-control'>
+                            </li>
+                            <li>
+                                <select name="select" class='form-control'>
                                 <option selected="selected" value="0">Título</option>
                                 <option value="1">Autor</option>
                                 <option value="2">Categoría</option>
-                            </select>
-                        </form>
-                    </ul>
+                                </select>
+                            </li>
+                        </ul>
+                    </form>
                     
-                    <ul class="nav navbar-nav" style="padding-top: 8px">
-                        <% Client client = (Client) session.getAttribute("client");
-                            if(client != null && client.getIsadmin() == 1){ %>
-                                <a class='btn btn-danger' href='adminView.jsp'>Administrar Base de Datos</a>
-                        <% } %>
-                        
-                    </ul>
+                    <%  Client client = (Client) session.getAttribute("client");
+                        if(client != null && client.getIsadmin() == 1){ %>
+                        <div class="navbar-header">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class='btn btn-danger' href='adminView.jsp'>Administrar Base de Datos</a>
+                        </div>
+                    <%  } %>
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -137,7 +152,7 @@
                                 </ul>   
                             <% }else{ %>
                             <ul class="dropdown-menu" role="menu">
-                                <a href='profileView.jsp'>Perfil</a>
+                                <li><a href='profileView.jsp'>Perfil</a></li>
                                 <li class="divider"></li>
                                 <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
                                     <input type='hidden' value='ShowStarredCommand' name='command'>
@@ -165,7 +180,7 @@
                         <li class="dropdown">
                             <% if(session.getAttribute("session") != null) { %>
                                 <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                                <a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a>
+                                <li><a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a></li>
                             <% } %>
                         </li>
                     </ul>

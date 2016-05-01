@@ -46,9 +46,9 @@ public class SearchCommand extends FrontCommand {
                 for (Book book : searchList) {
                     list.add(book);
                 }
-                session.setAttribute("searchResult", list);
+                session.setAttribute("books", list);
                 em.close();
-                forward("/searchView.jsp");
+                forward("/booksView.jsp");
             }else{
                 session.setAttribute("error", "No existe ningun libro que cumpla el criterio de búsqueda, inténtelo otra vez");
                 forward("/errorView.jsp");

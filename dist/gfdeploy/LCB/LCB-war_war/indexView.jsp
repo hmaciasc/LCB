@@ -70,37 +70,45 @@
                                     </form>
                                 </li>
                                 <li class="col-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Recomendados</li>
-                                        <li><a href="showBookInfo.jsp?title='Crónicas Vampíricas'">Crónicas Vampíricas</a></li>
-                                        <li><a href="showBookInfo.jsp?title='El Nombre del Viento'">El Nombre del Viento</a></li>
-                                        <li><a href="showBookInfo.jsp?title='Los Juegos del Hambre'">Los Juegos del Hambre</a></li>
-                                        <li><a href="showBookInfo.jsp?title='Harry Potter y el Cáliz del Fuego'">Harry Potter y el Cáliz del Fuego</a></li>
-                                        <li><a href="showBookInfo.jsp?title='Harry Potter y la Piedra Filosofal'">Harry Potter y la Piedra Filosofal</a></li>
-                                    </ul>
+                                    <div>
+                                        <form action='FrontControllerServlet' method='POST' role='form'>
+                                            <input type='hidden' value='ShowBookDetailsCommand' name='command'/>
+                                            <ul class='listItems'>
+                                                <li class="dropdown-header">Recomendados</li>
+                                                <li><input type='submit' class='submitLink' value='Cronicas vampiricas' name='title'/></li>
+                                                <li><input type='submit' class='submitLink' value='El nombre del viento' name='title'/></li>
+                                                <li><input type='submit' class='submitLink' value='Los juegos del hambre' name='title'/></li>
+                                                <li><input type='submit' class='submitLink' value='Harry Potter 3' name='title'/></li>
+                                                <li><input type='submit' class='submitLink' value='Harry Potter 1' name='title'/></li>
+                                            </ul>
+                                        </form>
+                                    </div>
                                 </li>
                                 <li class="col-sm-3">
-                                    <form action='FrontControllerServlet' method='POST' role='form'>
                                         <ul class='listItems'>
-                                            <li><input type='hidden' value='SearchCommand' name='command'/></li>
                                             <li class="dropdown-header">Libros</li>
                                             <li><div class="carousel slide" data-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    <div class="item active">
-                                                        <a href='bookDetailsView.jsp'><img src="covers/Harry Potter 1.jpg" class="img-responsive" alt="product 1"></a>
-                                                    </div><!-- End Item -->
-                                                    <div class="item">
-                                                        <a href="bookDetailsView.jsp"><img src="covers/Harry Potter 2.jpg" class="img-responsive" alt="product 2"></a>
-                                                    </div><!-- End Item -->
-                                                    <div class="item">
-                                                        <a href="bookDetailsView.jsp"><img src="covers/Harry Potter 3.jpg" class="img-responsive" alt="product 3"></a>
-                                                    </div><!-- End Item -->
+                                                    <% ArrayList<Book> books = (ArrayList) session.getAttribute("books");
+                                                        int active = 1;
+                                                        if (books !=  null && !books.isEmpty()) {
+                                                            for (Book book : books){ %>
+                                                        <div class="item <% if (active == 1) out.print("active");%>">
+                                                            <form action='FrontControllerServlet' method='POST' role='form'>
+                                                                <input type='hidden' value='ShowBookDetailsCommand' name='command'/>
+                                                                <% active = 0; %>
+                                                                <input type='hidden' value='<% out.print(book.getIsbn()); %>' name='isbnDetails'/>
+                                                                <input type='image' src='covers/<% out.print((book.getTitle())+".jpg"); %>' class="img-responsive" alt="<% out.print(book.getTitle()); %>">
+                                                            </form>
+                                                        </div><!-- End Item -->
+                                                        <% } %>
+                                                    <% } %>
                                                 </div><!-- End Carousel Inner -->
                                             </div></li><!-- /.carousel -->
                                             <li class="divider"></li>
                                             <li><a href="booksView.jsp">Ver todos los libros <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
                                         </ul>
-                                    </form>
+                                        
                                 </li>
                             </ul>
                         </li>

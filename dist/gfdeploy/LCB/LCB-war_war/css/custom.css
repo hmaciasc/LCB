@@ -8,6 +8,13 @@ and open the template in the editor.
     Author     : hmaci
 */
 
+body{
+    background: url("../images/booksGround.jpg") fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
 img {
     width: 200px;
     height: 320px;
@@ -42,4 +49,8 @@ img {
 
 .bookDescription {
     text-align: center;
+}
+
+.details * {
+    font-size: 20px;
 }

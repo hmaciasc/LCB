@@ -3,7 +3,6 @@
     Created on : 13-mar-2016, 12:12:04
     Author     : maxi
 --%>
-<%@page import="entity.Discount"%>
 <%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="controller.BookFacade"%>
@@ -49,7 +48,7 @@
                 %>
                 <div class='col-lg-4'>
                     <div class='book-cart'>
-                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive" width="304" height="236">
+                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block" width="304" height="236">
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
                         <p> <% out.print(book.getDiscountPrice()); %> €</p>
@@ -86,8 +85,6 @@
                                 <option value='Paypal' selected='selected'>Paypal</option>
                                 <option value='Banco'>Tarjeta de Crédito/Débito</option>
                             </select><br>
-                            <label for='discountCode'>Introduzca codigo descuento</label>
-                            <input type='text' name='discountCode' class='form-control'>
                             <h3> Total a pagar: <% out.print(cart.getCost()); %> € </h3>
                             <button type='submit' class='btn btn-default'>Pagar</button>
                         </form>

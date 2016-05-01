@@ -44,17 +44,17 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nuestros productos <span class="caret"></span></a>
                             <ul class="dropdown-menu mega-dropdown-menu">
                                 <li class="col-sm-3">
-                                    <ul>
-                                        <form action='FrontControllerServlet' method='POST' role='form'>
-                                        <li class="dropdown-header">Géneros</li>
-                                        <li><input type='submit' class='submitLink' value='Juvenil' name='genero'/></li>
+                                    <form action='FrontControllerServlet' method='POST' role='form'>
+                                        <ul>
+                                            <li class="dropdown-header">Géneros</li>
+                                            <li><input type='hidden' value='SearchCommand' name='command'/></li>
+                                            <li><input type='submit' class='submitLink' value='Juvenil' name='genero'/></li>
                                             <li><input type='submit' class='submitLink' value='Infantil' name='genero'/></li>
-                                            <li><input type='submit' class='submitLink' value='Fantasía' name='genero'/></li>
+                                            <li><input type='submit' class='submitLink' value='Fantasia' name='genero'/></li>
                                             <li><input type='submit' class='submitLink' value='Aventuras' name='genero'/></li>
-                                            <li><input type='submit' class='submitLink' value='Ciencia Ficción' name='genero'/></li>
-                                            <input type='hidden' value='SearchCommand' name='command'/>
-                                        </form>
-                                    </ul>
+                                            <li><input type='submit' class='submitLink' value='Ciencia Ficcion' name='genero'/></li>
+                                        </ul>
+                                    </form>
                                 </li>
                                 <li class="col-sm-3">
                                     <ul>

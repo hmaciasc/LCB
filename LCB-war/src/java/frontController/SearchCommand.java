@@ -31,7 +31,7 @@ public class SearchCommand extends FrontCommand {
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCB-ejbPU");
             EntityManager em = emf.createEntityManager();
-            
+
             String query;
             String search;
             if(request.getParameter("genero") != null){
@@ -57,7 +57,7 @@ public class SearchCommand extends FrontCommand {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private String getTypeOfSearch(){
         if(getParameter("select").equals("0")){
             return "title";
@@ -73,5 +73,5 @@ public class SearchCommand extends FrontCommand {
     private String getParameter(String parameter) {
         return request.getParameter(parameter);
     }
-    
+
 }

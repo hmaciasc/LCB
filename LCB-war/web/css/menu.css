@@ -140,6 +140,6 @@ a:active {
     color: #cccccc;
 }
 
-body > div > nav > div.collapse.navbar-collapse.js-navbar-collapse > ul:nth-child(1) > li > ul > li:nth-child(1) > ul{
+body > div > nav > div.collapse.navbar-collapse.js-navbar-collapse > ul:nth-child(1) > li > ul > li:nth-child(1) > form > ul > li{
     list-style: none;
 }

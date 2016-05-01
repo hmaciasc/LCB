@@ -20,14 +20,6 @@
     </head>
     <body>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
             <div class='container row-fluid center-block'>
                 <% Client client = (Client)session.getAttribute("client"); %>
                 <% if (client != null) { %>

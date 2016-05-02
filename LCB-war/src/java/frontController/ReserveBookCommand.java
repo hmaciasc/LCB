@@ -48,7 +48,8 @@ public class ReserveBookCommand extends FrontCommand {
 
                 session.setAttribute("reservations", reservationList);
                 session.setAttribute("userReservations", userReservationList);
-                forward("/reservationMadeView.jsp");
+                request.setAttribute("userReservations", userReservationList);
+                forward("/reservationsView.jsp");
             }
             
         } catch (ServletException | IOException | NamingException ex) {

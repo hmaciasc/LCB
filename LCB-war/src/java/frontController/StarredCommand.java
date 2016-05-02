@@ -23,7 +23,14 @@ public class StarredCommand extends FrontCommand{
             Integer bookIsbn = Integer.parseInt(request.getParameter("bookIsbn"));
             StarredFacadeLocal starreds = InitialContext.doLookup("java:global/LCB/LCB-ejb/StarredFacade");
             List<Integer> starredList = (List<Integer>) session.getAttribute("starredList");
-            if(starreds.count() == 0){
+            Integer starredID = -1;
+            for (int i = 0; i < starreds.findAll().size(); i++) {
+                if(starreds.findAll().get(i).getMail().getMail().equals(session.getAttribute("session"))){
+                    starredID = starreds.findAll().get(i).getId();
+                    break;
+                }
+            }
+            if(starredID == -1){
                 if(starredList.isEmpty()){
                     starredList.add(bookIsbn);
                 }else{

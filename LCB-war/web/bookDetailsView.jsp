@@ -101,7 +101,7 @@
                                 </form>
                             </div>
                             <div class="col-sm-6">
-                                <div class='text-center'>
+                                <div class='text-center col-lg-offset-1'>
                                     <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                         <input type="hidden" value="StarredCommand" name="command" />
                                         <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
@@ -127,10 +127,10 @@
                             <form action='FrontControllerServlet' class='form-horizontal' role='form'>
                                 <input type='hidden' value='AddToCartCommand' name='command'>
                                 <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-4">
                                         <input type="text" class="form-control bfh-number" data-min="1" data-max="<% out.print(book.getCopy()); %>" data-wrap="true" name="nCopies">
                                     </div>
-                                    <div class="col-lg-6 col-lg-offset-1">
+                                    <div class="col-lg-5 col-lg-offset-1 pull-right">
                                         <button type='submit' class='btn btn-primary' style="width: 150px;">Añadir al carrito</button>
                                     </div>
                             </form>

@@ -46,7 +46,7 @@
             </div>
             <div class='row'>
                 <div class='col-lg-2 center-block'>
-                    <h4 class='text-center'>Precio total: <% out.print(cart.getCost()); %></h4>
+                    <h2 class='text-center'>Precio total: <% out.print(cart.getCost()); %> €</h2>
                 </div>
             </div>
                 <% } %>

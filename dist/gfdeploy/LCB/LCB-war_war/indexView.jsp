@@ -30,5 +30,10 @@
         <script src='js/bootstrap.min.js'></script>
         <script src="js/menu.js"></script>
         <%@include file="menu.jsp" %>
+        <div class="row vertical-center">
+            <div class="col-lg-3 center-block">
+                <img src="images/logo_index.png">
+            </div>
+        </div>
     </body>
 </html>

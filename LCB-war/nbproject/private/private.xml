@@ -5,9 +5,10 @@
         <group>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/starredView.jsp</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/indexView.jsp</file>
-            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/BookValueCommand.java</file>
-            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/bookDetailsView.jsp</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/menu.jsp</file>
             <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/css/custom.css</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/web/modifyUserView.jsp</file>
+            <file>file:/D:/Users/Hector/Documents/LCB/LCB-war/src/java/frontController/HomeCommand.java</file>
         </group>
     </open-files>
 </project-private>

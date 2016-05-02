@@ -30,7 +30,7 @@
             <div class='row'>
                 <div class='col-lg-12 center-block'>
                     <br>
-                    <div class='center-block alert alert-success col-lg-4' role="alert">
+                    <div class='center-block alert alert-success col-lg-4 text-center' role="alert">
                         <% client = (Client) session.getAttribute("client"); %>
                         <% if(client != null){ %>
                              Usuario: <% out.print(client.getMail()); %><br>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class='container row-fluid center-block'>
-                <div class='col-lg-4 col-lg-offset-2'>
+                <div class='col-lg-4 col-lg-offset-4'>
                     <div class='client'>
                         <form action='FrontControllerServlet' method='post' class='form-horizontal' role='form'>
                             <input type='hidden' value='ModifyProfileCommand' name='command'>

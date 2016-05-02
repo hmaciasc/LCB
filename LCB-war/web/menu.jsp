@@ -134,7 +134,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mi cuenta <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Mi cuenta <span class="caret"></span></a>
                     <% if(session.getAttribute("session") == null){ %>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="loginView.jsp">Inicia Sesión</a></li>
@@ -143,35 +143,42 @@
                         </ul>   
                     <% }else{ %>
                     <ul class="dropdown-menu" role="menu">
-                        <a href='profileView.jsp'>Perfil</a>
+                        <li><a href='profileView.jsp' style="padding: 1px 6px;">Perfil</a></li>
                         <li class="divider"></li>
-                        <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
-                            <input type='hidden' value='ShowStarredCommand' name='command'>
-                            <button class="submitLink" type='submit' class='btn btn-default'>Favoritos</button>
-                        </form>
-
+                        <li>
+                            <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
+                                <input type='hidden' value='ShowStarredCommand' name='command'>
+                                <button class="submitLink" type='submit' class='btn btn-default'>Favoritos</button>
+                            </form>
+                        </li>
                         <li class="divider"></li>
+                        <li>
                             <form method='post' action='FrontControllerServlet' role='form'>
                                 <input type='hidden' value='AddShoppingCommand' name='command'>
                                 <input class="submitLink" type='submit' name='compras' value="Mis compras">
                             </form>
+                        </li>
                         <li class="divider"></li>
-                        <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
-                            <input type='hidden' value='ShowReservationsCommand' name='command'>
-                            <button class='submitLink' type='submit'>Mis Reservas</button>
-                        </form>
+                        <li>
+                            <form action='FrontControllerServlet' class='form-horizontal' method='POST' role='form'>
+                                <input type='hidden' value='ShowReservationsCommand' name='command'>
+                                <button class='submitLink' type='submit'>Mis Reservas</button>
+                            </form>
+                        </li>
                         <li class="divider"></li>
+                        <li>    
                             <form method='post' action='FrontControllerServlet' class='form-horizontal' role='form'>
                                 <input type='hidden' value='LogOutCommand' name='command'>
                                 <input type='submit' class='submitLink' name='logout' value='Cerrar sesión'>
                             </form>
+                        </li>
                         <% } %>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <% if(session.getAttribute("session") != null) { %>
                         <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                        <a href="FrontControllerServlet?command=ShowCartCommand" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a>
+                        <a href="FrontControllerServlet?command=ShowCartCommand" role="button"> <span class="glyphicon glyphicon-shopping-cart"></span> <% out.print(cart.getCart().size()); %></a>
                     <% } %>
                 </li>
             </ul>

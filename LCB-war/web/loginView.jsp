@@ -26,13 +26,11 @@
             <div class="row">
                 <div class="col-sm-4 center-block">
                     <div class="wrap">
-                        <p class="form-title">
-                            Inicie Sesión
-                        </p>
+                        <p class="form-title">Inicie Sesión</p>
                         <form method="post" class="login form-horizontal" action='FrontControllerServlet' role='form'>
                             <input type='hidden' value='LoginCommand' name='command'>
-                            <input class='form-control' type='email' name='user' placeholder="Usuario" required="yes">
-                            <input class='form-control' type='password' name='password' placeholder="Contraseña" required="yes">
+                            <input class='form-control' type='email' name='user' placeholder="Usuario" required>
+                            <input class='form-control' type='password' name='password' placeholder="Contraseña" required>
                             <input type="submit" value="Entrar" class="btn btn-danger btn-sm" />
                         </form>
                     </div>

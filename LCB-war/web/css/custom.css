@@ -13,7 +13,7 @@ body{
 .center-block {float: none !important}
 
 .book {
-    height: 600px;
+    height: 480px;
     margin: 0 auto;
     padding-top: 5px;
     text-align: center;
@@ -87,4 +87,20 @@ body{
 }
 .rating > label:active {
     position:relative;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+th {
+    background-color: #ea0;
+}
+
+tr {
+    background-color: #09A0DB;
 }

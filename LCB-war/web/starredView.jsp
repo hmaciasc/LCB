@@ -39,6 +39,8 @@
                 }%>
             </div>
         </div>
-        
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
     </body>
 </html>

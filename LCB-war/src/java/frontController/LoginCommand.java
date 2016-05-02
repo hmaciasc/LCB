@@ -38,7 +38,7 @@ public class LoginCommand extends FrontCommand {
                 forward("/booksView.jsp");
             }else{
                 String message = "";
-                if (client == null) {
+                if (list.isEmpty()) {
                     message = "El usuario no existe";
                 } else {
                     message = "Contraseña incorrecta";

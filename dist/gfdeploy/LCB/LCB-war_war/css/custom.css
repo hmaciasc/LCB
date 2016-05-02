@@ -71,7 +71,7 @@ body{
     cursor:pointer;
     font-size:200%;
     line-height:1.2;
-    color:#ddd;
+    color: #666666;
 }
 .rating:not(:checked) > label:before {
     content:'★ ';
@@ -98,9 +98,14 @@ body{
 }
 
 th {
-    background-color: #ea0;
+    background-color: Black;
+    color: #d9534f;
 }
 
-tr {
-    background-color: #09A0DB;
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #cccccc;
 }

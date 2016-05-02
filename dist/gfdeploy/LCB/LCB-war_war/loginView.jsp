@@ -31,8 +31,8 @@
                         </p>
                         <form method="post" class="login form-horizontal" action='FrontControllerServlet' role='form'>
                             <input type='hidden' value='LoginCommand' name='command'>
-                            <input class='form-control' type='email' name='user' placeholder="Usuario">
-                            <input class='form-control' type='password' name='password' placeholder="Contraseña">
+                            <input class='form-control' type='email' name='user' placeholder="Usuario" required="yes">
+                            <input class='form-control' type='password' name='password' placeholder="Contraseña" required="yes">
                             <input type="submit" value="Entrar" class="btn btn-danger btn-sm" />
                         </form>
                     </div>

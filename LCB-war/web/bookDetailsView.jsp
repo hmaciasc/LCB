@@ -106,7 +106,7 @@
                         <% if (client != null) { %>
                         <div class='row center-block'>
                             <div class="col-sm-5">
-                                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                                <form action='FrontControllerServlet' method='post' class='form-horizontal' role='form'>
                                     <input type="hidden" value="BookValueCommand" name="command" />
                                     <input type="hidden" value='<% out.print(book.getIsbn()); %>' name="bookIsbn" />
                                     <input type="hidden" value="<% out.print(client.getMail()); %>" name='clientMail' />

@@ -22,10 +22,14 @@ public class ShowBookDetailsCommand extends FrontCommand{
             BookFacadeLocal DBConnection = InitialContext.doLookup("java:global/LCB/LCB-ejb/BookFacade");
             String isbn = request.getParameter("isbnDetails");
             String title = request.getParameter("title");
+            Integer ratingIsbn = (Integer) request.getAttribute("isbnDetails");
             Book book;
             ArrayList<Book> list = new ArrayList<>();
-            if (isbn != null) {
-                book = DBConnection.find(Integer.parseInt(isbn));
+            if (isbn != null || ratingIsbn != null) {
+                if (ratingIsbn != null)
+                    book = DBConnection.find(ratingIsbn);
+                else    
+                    book = DBConnection.find(Integer.parseInt(isbn));
                 list.add(book);
             }else if (title != null){
                 for (Book singleBook : DBConnection.findAll()) {

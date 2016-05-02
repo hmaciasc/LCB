@@ -17,27 +17,21 @@
 <html>
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-formhelpers.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
+        <link href="css/bootstrap-formhelpers.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
         <title>Mi Perfil</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
             <div class='row'>
                 <div class='col-lg-12 center-block'>
                     <br>
-                    <div class='center-block alert alert-success col-lg-4' role="alert">
-                        <% Client client = (Client) session.getAttribute("client"); %>
+                    <div class='center-block alert alert-info col-lg-4 text-center' role="alert">
+                        <% client = (Client) session.getAttribute("client"); %>
                         <% if(client != null){ %>
                              Usuario: <% out.print(client.getMail()); %><br>
                              Nombre: <% out.print(client.getName()); %><br>
@@ -49,7 +43,7 @@
                 </div>
             </div>
             <div class='container row-fluid center-block'>
-                <div class='col-lg-4 col-lg-offset-2'>
+                <div class='col-lg-4 col-lg-offset-4'>
                     <div class='client'>
                         <form action='FrontControllerServlet' method='post' class='form-horizontal' role='form'>
                             <input type='hidden' value='ModifyProfileCommand' name='command'>

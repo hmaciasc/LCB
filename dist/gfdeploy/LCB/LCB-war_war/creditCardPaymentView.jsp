@@ -12,18 +12,11 @@
         <link href="css/custom.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
-        <title>Pago via Paypal</title>
+        <title>Pago con tarjeta de crédito</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
             <div class='row'>
                 <div class='col-lg-4 col-lg-offset-4 paymentInfoWrapper'>
                     <h1>Pago</h1>
@@ -31,7 +24,7 @@
                         <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
                         <a> Carrito: <% out.print(cart.getCart().size()); %> productos</a>
                         <div class='priceWrapper'>
-                            <h2> Total a pagar: <% out.print(session.getAttribute("price")); %> €</h2>
+                            <h2> Total a pagar: <% out.print(cart.getCost()); %> €</h2>
                         </div>
                     </div>
                 </div>

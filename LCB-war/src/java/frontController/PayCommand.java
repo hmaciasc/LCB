@@ -8,8 +8,6 @@ package frontController;
 import controller.DiscountFacadeLocal;
 import entity.Discount;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -37,7 +35,7 @@ public class PayCommand extends FrontCommand{
 
             String discountCode = request.getParameter("discountCode");
             Double price = Double.parseDouble(request.getParameter("price"));
-            if(discountCode != ""){
+            if(discountCode != null){
                 discount = DBConnectionD.find(Integer.parseInt(discountCode));
                 if(discount != null){
                     price = price - (price * discount.getDiscount()/100);
@@ -50,15 +48,11 @@ public class PayCommand extends FrontCommand{
             }
             String method = request.getParameter("paySelector");
             session.setAttribute("price", price);
-
+            session.setAttribute("payMethod", method);
             PdfHandler pdf = new PdfHandler(cart, discount.getDiscount(), price);
 
             session.setAttribute("bill", pdf.getAbsolutePath());
-            if (method.equals("Paypal")) {
-                forward("/paypalPaymentView.jsp");
-            } else {
-                forward("/creditCardPaymentView.jsp");
-            }
+            forward("/paypalPaymentView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(PayCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -4,77 +4,55 @@
     Author     : javi
 --%>
 
+<%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
+<%@page import="javax.ejb.EJB"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Book"%>
+<%@page import="util.ShoppingCart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
         <title>Libros mejor valorados</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
             <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-lg-4'>
+                <div class='col-lg-5 col-lg-offset-2'>
                     <h2>Recomendaciones: </h2>
-                </div>
-                <div class='col-lg-1 pull-right'>
-                    <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                    <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
-                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                        <input type='hidden' value='ShowCartCommand' name='command'>
-                        <button type='submit' class='btn btn-default'>Ver Carrito</button>
-                    </form>
                 </div>
             </div>
             <div class='container row-fluid center-block'>
-                <% ArrayList<Book> books = (ArrayList) session.getAttribute("recomendations");
+                <% books = (ArrayList) session.getAttribute("recomendations");
                     if (books !=  null && !books.isEmpty()) {
                         for (Book book : books){
                 %>
                 <div class='col-lg-4'>
                     <div class='book'>
-                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive">
+                        <form action='FrontControllerServlet' method='POST' role='form'>
+                            <input type='hidden' value='ShowBookDetailsCommand' name='command'/>
+                            <input type='hidden' value='<% out.print(book.getIsbn()); %>' name='isbnDetails'/>
+                            <input type='image' src='covers/<% out.print((book.getTitle())+".jpg"); %>' class="center-block img-responsive" alt="<% out.print(book.getTitle()); %>">
+                        </form>
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
-                        <p> <% out.print(book.getCopy()); %> copias </p>
-                        <p> <% out.print(book.getPrice()); %> €</p>
                         <p> <% out.print(book.getCategory()); %> </p>
-                        <p> <% out.print(book.getUsersvalue()); %> </p>
-                            <%  if (book.getCopy() <= 0) {   %>
-                                <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                    <input type='hidden' value='ReserveBookCommand' name='command'>
-                                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                    <button type='submit' class='btn btn-warning'>Reservar</button>
-                                </form><br>
-                            <%  } else {   %>
-                            <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                                <input type='hidden' value='AddToCartCommand' name='command'>
-                                <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                                <button type='submit' class='btn btn-primary'>Añadir al carrito</button>
-                            </form><br>
-                            <% } %>
                     </div>
                 </div>
                         <% } %>
-                    <% } else {%>
-                    <p><h3>Sin resultados.</h3></p>
                     <% } %>
             </div>
         </div>
-        
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
     </body>
 </html>

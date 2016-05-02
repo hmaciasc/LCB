@@ -19,33 +19,27 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-formhelpers.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
         <title>LCB - Error Page</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-lg-12 center-block'>
+            <div class='row vertical-center'>
+                <div class='col-lg-12'>
                     <% String error = session.getAttribute("error").toString(); %>
                     <% if(error != null && (!error.isEmpty() || error.length() > 0)){ %>
-                    <br>
-                    <div class='center-block alert alert-warning col-lg-4' role="alert">
-                        
-                        <p><% out.print(error);%></p>
-                        <% session.setAttribute("error", ""); %>
-                        <% }else{ %>
-                            <p>No hay errores</p>
-                        <% } %>
-                    </div>  
+                    <div class='row'>
+                        <div class='center-block alert alert-warning col-lg-4' role="alert">
+                            <p><% out.print(error);%></p>
+                            <% session.setAttribute("error", ""); %>
+                            <% }else{ %>
+                                <p>No hay errores</p>
+                            <% } %>
+                        </div>  
+                    </div>
                 </div>
             </div>
         </div>

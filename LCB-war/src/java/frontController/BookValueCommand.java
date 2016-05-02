@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +39,8 @@ public class BookValueCommand extends FrontCommand {
             }else{
                 value = Integer.parseInt(request.getParameter("bookValue"));
                 addBookValue();
-                forward("/FrontControllerServlet?command=HomeCommand");
+                request.setAttribute("isbnDetails", bookIsbn);
+                forward("/FrontControllerServlet?command=ShowBookDetailsCommand");
             }
         } catch (ServletException | IOException ex) {
             Logger.getLogger(BookValueCommand.class.getName()).log(Level.SEVERE, null, ex);

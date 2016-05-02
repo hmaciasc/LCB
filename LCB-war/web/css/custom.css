@@ -1,24 +1,20 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 30-Mar-2016, 14:55:25
     Author     : hmaci
 */
 
-img {
-    width: 200px;
-    height: 320px;
+body{
+    background: url("../images/booksGround.jpg") fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
 }
 
 .center-block {float: none !important}
 
 .book {
-    height: 600px;
+    height: 480px;
     margin: 0 auto;
-    border: 1px solid #cccccc;
     padding-top: 5px;
     text-align: center;
     margin-top: 5px;
@@ -30,7 +26,7 @@ img {
 }
 
 .book-cart {
-    height: 460px;
+    height: 660px;
     margin: 0 auto;
     border: 1px solid #cccccc;
     text-align: center;
@@ -42,4 +38,74 @@ img {
 
 .bookDescription {
     text-align: center;
+}
+
+.details * {
+    font-size: 20px;
+}
+
+.payment {
+    margin-top: 25px;
+}
+
+.book img {
+    width: 250px;
+    height: 380px;
+}
+
+ .rating {
+    float:left;
+    border:none;
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0, 0, 0, 0);
+}
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color: #666666;
+}
+.rating:not(:checked) > label:before {
+    content:'★ ';
+}
+.rating > input:checked ~ label {
+    color: #f70;
+}
+.rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+.rating > input:checked + label:hover, .rating > input:checked + label:hover ~ label, .rating > input:checked ~ label:hover, .rating > input:checked ~ label:hover ~ label, .rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+}
+.rating > label:active {
+    position:relative;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+th {
+    background-color: Black;
+    color: #d9534f;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #cccccc;
 }

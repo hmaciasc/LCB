@@ -4,6 +4,9 @@
     Author     : hmaci
 --%>
 
+<%@page import="util.ShoppingCart"%>
+<%@page import="entity.Client"%>
+<%@page import="entity.Book"%>
 <%@page import="javax.ejb.EJB"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,44 +16,71 @@
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
+        <link href="css/register.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
-        <title>Welcome to Leaky Cauldron Bookstore!</title>
+        <title>Regístrate en LCB</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
             <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-lg-4 col-lg-offset-4 register wrapper'>
                     <% 
                         if(session.getAttribute("session") == null){ 
                     %>
-                        <form action='FrontControllerServlet' class='form-horizontal' role='form'>
-                            <input type='hidden' value='RegisterCommand' name='command'>
-                            <label for='email'>E-mail:*</label>
-                            <input class='form-control' type='email' name='user' required><br>
-                            <label for='password1'>Password:*</label>
-                            <input class='form-control' type='password' name='password1' required><br>
-                            <label for='password2'>Repetir password:*</label>
-                            <input class='form-control' type='password' name='password2' required><br>
-                            <label for='name'>Nombre:</label>
-                            <input class='form-control' type='text' name='name'><br>
-                            <label for='lastname'>Apellido:</label>
-                            <input class='form-control' type='text' name='lastname'><br>
-                            <label for='address1'>Dirección:*</label>
-                            <input class='form-control' type='text' name='address1' required><br>
-                            <label for='address2'>Dirección:</label>
-                            <input class='form-control' type='text' name='address2'><br>
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4 center-block centered-form">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+			    		<h3 class="panel-title">Regístrate</h3>
+                                    </div>
+                                    <div class="panel-body">
+			    		<form action='FrontControllerServlet' method='POST' role="form">
+                                            <input type='hidden' value='RegisterCommand' name='command'>
+                                            <div class="form-group">
+                                                <input type="email" name="user" id="email" class="form-control input-sm" placeholder="Email" required>
+                                            </div>
+                            
+                                            <div class="form-group">
+    		    				<input type="text" name="name" id="email" class="form-control input-sm" placeholder="Nombre">
+                                            </div>
+                            
+                                            <div class="form-group">
+        	    				<input type="text" name="lastname" id="email" class="form-control input-sm" placeholder="Apellido">
+                                            </div>
+                            
+                                            <div class="form-group">
+        	    				<input type="text" name="address1" id="email" class="form-control input-sm" placeholder="Dirección" required>
+                                            </div>
+                            
+                                            <div class="form-group">
+                				<input type="text" name="address2" id="email" class="form-control input-sm" placeholder="Dirección Alternativa">
+                                            </div>
 
-                            <button  type='submit' class='btn btn-default'>Registrarme</button>
-                        </form>
+                                            <div class="row">
+			    			<div class="col-xs-6 col-sm-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="password" name="password1" id="password" class="form-control input-sm" placeholder="Contraseña" required>
+                                                    </div>
+                                                </div>
+			    			<div class="col-xs-6 col-sm-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="password" name="password2" id="password_confirmation" class="form-control input-sm" placeholder="Confirmar Contraseña" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+			    			
+                                            <input type="submit" value="REGISTRARSE" class="btn btn-danger btn-block">
+			    		
+			    		</form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <% }else{ %>
 
                         Usuario: <% out.print(session.getAttribute("session")); %>
@@ -58,7 +88,10 @@
                     <% } %>
                 </div>
             </div>
-        </div>
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
+        <script src="js/register.js"></script>
     </body>
 </html>
 

@@ -4,6 +4,8 @@
     Author     : Famïa
 --%>
 
+<%@page import="util.ShoppingCart"%>
+<%@page import="entity.Client"%>
 <%@page import="entity.Discount"%>
 <%@page import="util.StatisticsBean"%>
 <%@page import="javax.naming.InitialContext"%>
@@ -15,20 +17,14 @@
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
         <title>LCB Admin Panel</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
             <div class='row'>
                 <div class='col-lg-4 col-lg-offset-2'>
                     <h2>Añadir libro</h2>
@@ -81,7 +77,7 @@
             <div class='row'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2>Eliminar libro</h2>
-                    <% ArrayList<Book> books = (ArrayList) session.getAttribute("allBooks"); 
+                    <% books = (ArrayList) session.getAttribute("allBooks"); 
                         if (books !=  null && !books.isEmpty()) {
                             for (Book book : books){
                     %>
@@ -165,12 +161,6 @@
                 </div>
             </div><br>
             
-            
-            
-            
-            
-            
-            
             <div class='row'>
                 <div class='col-lg-10 col-lg-offset-1'>
                     <h2>Gestión de usuarios</h2>
@@ -201,6 +191,8 @@
                 </div>
             </div>
         </div>
-
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
     </body>
 </html>

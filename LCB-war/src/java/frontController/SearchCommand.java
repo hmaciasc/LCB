@@ -5,7 +5,6 @@
  */
 package frontController;
 
-//import NewServlet;
 import entity.Book;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,9 +31,16 @@ public class SearchCommand extends FrontCommand {
 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("LCB-ejbPU");
             EntityManager em = emf.createEntityManager();
-            
-            String search = getParameter("search").toLowerCase();
-            String query = "SELECT b FROM Book b WHERE LOWER(b."+getTypeOfSearch()+") LIKE :search";
+
+            String query;
+            String search;
+            if(request.getParameter("genero") != null){
+                search = getParameter("genero").toLowerCase();
+                query = "SELECT b FROM Book b WHERE LOWER(b.category) LIKE :search";
+            }else{
+                search = getParameter("search").toLowerCase();
+                query = "SELECT b FROM Book b WHERE LOWER(b."+getTypeOfSearch()+") LIKE :search";
+            }
             List<Book> searchList = em.createQuery(query).setParameter("search", "%"+search+"%").getResultList();
             if(!searchList.isEmpty()){
                 for (Book book : searchList) {
@@ -51,7 +57,7 @@ public class SearchCommand extends FrontCommand {
             Logger.getLogger(SearchCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private String getTypeOfSearch(){
         if(getParameter("select").equals("0")){
             return "title";
@@ -67,5 +73,5 @@ public class SearchCommand extends FrontCommand {
     private String getParameter(String parameter) {
         return request.getParameter(parameter);
     }
-    
+
 }

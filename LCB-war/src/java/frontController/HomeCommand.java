@@ -80,8 +80,11 @@ public class HomeCommand extends FrontCommand{
             session.setAttribute("discounts", lista);
 
             session.setAttribute("error", "");
-
-            forward("/indexView.jsp");
+            if (request.getParameter("view") != null) {
+                forward("/booksView.jsp");
+            }else{
+                forward("/indexView.jsp");
+            }
             } catch (ServletException | IOException | NamingException ex) {
                 Logger.getLogger(HomeCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

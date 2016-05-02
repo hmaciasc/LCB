@@ -66,7 +66,7 @@ public class AddToCartCommand extends FrontCommand{
                         }
                     }
                 }
-                forward("/indexView.jsp");
+                forward("/booksView.jsp");
             }
         } catch (ServletException | IOException | NamingException | CloneNotSupportedException ex) {
             Logger.getLogger(AddToCartCommand.class.getName()).log(Level.SEVERE, null, ex);

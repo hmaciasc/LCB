@@ -3,7 +3,6 @@
     Created on : 13-mar-2016, 12:12:04
     Author     : maxi
 --%>
-<%@page import="entity.Discount"%>
 <%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="controller.BookFacade"%>
@@ -17,39 +16,24 @@
     <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
+        <link href="css/cart.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name='viewport' content='width-device-width, initial-scale=1.0'>
-        <title>Carrito de compra</title>
+        <title>Mi carrito</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <div class='container-fluid'>
-            <div class='row'>
-                <div class='col-lg-1 col-md-offset-2'>
-                    <a href='FrontControllerServlet'><img src='images/logo.jpg' class="img-responsive"></a>
-                </div>
-                <div class='col-lg-8'>
-                    <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-lg-3'>
-                    <h1>Mi Carrito</h1>
-                </div>
-            </div>
-            <div class='row headerWrapper'>
-                <div class='col-lg-3 cart'>
-                    <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                    <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
-                </div>
-            </div>
             <div class='container row center-block'>
-                <% ArrayList<Book> books = (ArrayList) session.getAttribute("cartBooks"); 
+                <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
+                <% books = (ArrayList) session.getAttribute("cartBooks"); 
                     if (books !=  null || !books.isEmpty()) {
                         for (Book book : books){
                 %>
                 <div class='col-lg-4'>
-                    <div class='book-cart'>
-                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-thumbnail img-responsive" width="304" height="236">
+                    <div class='book'>
+                        <img src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block" width="304" height="236">
                         <p> <% out.print(book.getTitle()); %> </p>
                         <p> <% out.print(book.getAuthor()); %> </p>
                         <p> <% out.print(book.getDiscountPrice()); %> €</p>
@@ -63,8 +47,8 @@
                                 <% } %>
                             <% } %>
             </div>
-            <div class='row'>
-                <div class='col-lg-4 col-lg-offset-4'>
+            <div class='row container center-block'>
+                <div class='col-lg-4 col-lg-offset-4 payment'>
                     <div class='priceWrapper'>
                         <% if (cart.getCart().size() > 0) { %>
                         <form action='FrontControllerServlet' class='form-horizontal' role='form'>
@@ -72,7 +56,7 @@
                             <select name='directionSelector' class='form-control'>
                                 <option value='Dir1' selected='selected'> 
                                     <% 
-                                        Client client = (Client) session.getAttribute("client");
+                                        client = (Client) session.getAttribute("client");
                                         if (client == null) {
                                                 out.print("Inicie sesión");
                                         }else{
@@ -86,8 +70,6 @@
                                 <option value='Paypal' selected='selected'>Paypal</option>
                                 <option value='Banco'>Tarjeta de Crédito/Débito</option>
                             </select><br>
-                            <label for='discountCode'>Introduzca codigo descuento</label>
-                            <input type='text' name='discountCode' class='form-control'>
                             <h3> Total a pagar: <% out.print(cart.getCost()); %> € </h3>
                             <button type='submit' class='btn btn-default'>Pagar</button>
                         </form>
@@ -96,5 +78,8 @@
                 </div>
             </div>
         </div>
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
     </body>
 </html>

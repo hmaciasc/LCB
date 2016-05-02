@@ -14,7 +14,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
-import pdf.PdfHandler;
 import util.ShoppingCart;
 
 public class ShoppingCommand extends FrontCommand {

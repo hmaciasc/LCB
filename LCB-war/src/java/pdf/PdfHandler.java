@@ -38,7 +38,7 @@ public class PdfHandler {
     private final String title = "Factura de compra: ";
     public static final String path = "factura.pdf";
     public static String absolutePath;
-    private static final String imageUrl = "http://www.david-edward-byrd.com/gallery/warners7-2-lrg.jpg";
+    private static final String imageUrl = "https://41.media.tumblr.com/29541434882b09d0f53148241e6e6474/tumblr_nkdyrkqdOo1u3r6f7o1_400.png";
     private static final String info = "Web: www.lcb.com";
     
     private static final Font titleFont = new Font(Font.FontFamily.COURIER, 18,Font.NORMAL);

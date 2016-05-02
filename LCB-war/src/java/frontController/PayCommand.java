@@ -48,15 +48,11 @@ public class PayCommand extends FrontCommand{
             }
             String method = request.getParameter("paySelector");
             session.setAttribute("price", price);
-
+            session.setAttribute("payMethod", method);
             PdfHandler pdf = new PdfHandler(cart, discount.getDiscount(), price);
 
             session.setAttribute("bill", pdf.getAbsolutePath());
-            if (method.equals("Paypal")) {
-                forward("/paypalPaymentView.jsp");
-            } else {
-                forward("/creditCardPaymentView.jsp");
-            }
+            forward("/paypalPaymentView.jsp");
         } catch (ServletException | IOException | NamingException ex) {
             Logger.getLogger(PayCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

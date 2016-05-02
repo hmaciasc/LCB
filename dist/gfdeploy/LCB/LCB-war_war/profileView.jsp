@@ -30,7 +30,7 @@
             <div class='row'>
                 <div class='col-lg-12 center-block'>
                     <br>
-                    <div class='center-block alert alert-success col-lg-4 text-center' role="alert">
+                    <div class='center-block alert alert-info col-lg-4 text-center' role="alert">
                         <% client = (Client) session.getAttribute("client"); %>
                         <% if(client != null){ %>
                              Usuario: <% out.print(client.getMail()); %><br>

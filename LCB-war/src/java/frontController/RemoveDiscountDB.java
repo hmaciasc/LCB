@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,10 +30,16 @@ public class RemoveDiscountDB extends FrontCommand{
             
             String id = request.getParameter("discountID");
             
-            discounts = DBConnection.find(id);
+            discounts = DBConnection.find(Integer.parseInt(id));
             
             if (discounts != null){
-                DBConnection.remove(discounts);
+                try {
+                    DBConnection.remove(discounts);
+                } catch (Exception e) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("error", "No se puede eliminar el descuento porque está asociado a un libro");
+                    forward("/errorView.jsp");
+                }
             }
             
             forward("/FrontControllerServlet?command=HomeCommand");

@@ -39,13 +39,13 @@
                             <input type="image" src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block" width="250" height="400"/>
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-sm-6 bookDescription center-block">
-                                    <p> <% out.print(book.getTitle()); %> </p>
+                                    <h4><% out.print(book.getTitle()); %> </h4>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6 bookDescription center-block">
-                                    <p> <% out.print(book.getDiscountPrice()); %> €</p>
+                                    <h4><% out.print(book.getDiscountPrice()); %> €</h4>
                                 </div>
                             </div>
                         </form>

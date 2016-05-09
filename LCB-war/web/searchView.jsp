@@ -4,6 +4,7 @@
     Author     : javi
 --%>
 
+<%@page import="entity.Client"%>
 <%@page import="util.ShoppingCart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Book"%>
@@ -11,43 +12,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="./style.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+        <link href="css/menu.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Búsqueda</title>
+        <meta name='viewport' content='width-device-width, initial-scale=1.0'>
+        <title>Resultados de la búsqueda</title>
     </head>
     <body>
-        <div class='button'>
-            <h1><a href='FrontControllerServlet'> Leaky Cauldron Bookstore</a></h1>
-        </div>
-        <div class='header wrapper'>
-            <div class='cart'>
-                <% ShoppingCart cart = (ShoppingCart) session.getAttribute("cart"); %>
-                <p> Carrito: <% out.print(cart.getCart().size()); %> productos</p>
-                <form action='FrontControllerServlet'>
-                    <input type='hidden' value='ShowCartCommand' name='command'>
-                    <input type='submit' value='Ver Carrito'>
-                </form>
-            </div>
-        </div>
-        <h1>Resultado de la búsqueda: </h1>
-        <div class='wrapper'>
-            <% 
-                ArrayList<Book> books = (ArrayList) request.getAttribute("books");
-                for (Book book : books) {
+        <%@include file="menu.jsp" %>
+        <div class='container row-fluid center-block'>
+            <% books = (ArrayList) session.getAttribute("searchResult");
+                if (books !=  null && !books.isEmpty()) {
+                    for (Book book : books){
             %>
-            <div class='book'>
-                <h2> <% out.print("Título: " + book.getTitle()+ "<br>"); %> </h2>
-                <h2> <% out.print("Autor: " + book.getAuthor()+ "<br>"); %> </h2>
-                <h2> <% out.print("Editorial: " + book.getPublisher()+ "<br>"); %> </h2>
-                <h2> <% out.print("Precio: " + book.getPrice()); %> € </h2>
-                <form action='FrontControllerServlet'>
-                    <input type='hidden' value='AddToCartCommand' name='command'>
-                    <input type='hidden' value='<% out.print(book.getIsbn());%>' name='bookIsbn'>
-                    <input type='submit' value='Añadir al carrito'>
-                </form><br>
+            <div class='col-lg-4'>
+                <div class='book'>
+                    <form action='FrontControllerServlet' class='form-horizontal' role='form'>
+                        <input type='hidden' value='ShowBookDetailsCommand' name='command'>
+                        <input type='hidden' value='<% out.print(book.getIsbn());%>' name='isbnDetails'>
+                        <input type="image" src="covers/<% out.print(book.getTitle()+".jpg"); %>" onerror="this.src='images/inf.gif'" class="img-responsive center-block" alt="<% out.print(book.getTitle()); %>">
+                    </form><br>
+                    <h4><% out.print(book.getTitle()); %></h4>
+                </div>
             </div>
-                    <% } %>
+                <% } %>
+            <% } %>
         </div>
-        
+        <script src='js/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <script src="js/menu.js"></script>
     </body>
 </html>

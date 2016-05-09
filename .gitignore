@@ -1,2 +1,4 @@
 build/
 *.class
+/LCB-war/dist/
+dist/

@@ -6,20 +6,24 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author maxi
+ * @author Famïa
  */
 @Entity
 @Table(name = "CLIENT")
@@ -31,22 +35,18 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Client.findByAddress1", query = "SELECT c FROM Client c WHERE c.address1 = :address1"),
     @NamedQuery(name = "Client.findByAddress2", query = "SELECT c FROM Client c WHERE c.address2 = :address2"),
     @NamedQuery(name = "Client.findByMail", query = "SELECT c FROM Client c WHERE c.mail = :mail"),
-    @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password")})
+    @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password"),
+    @NamedQuery(name = "Client.findByIsadmin", query = "SELECT c FROM Client c WHERE c.isadmin = :isadmin")})
 public class Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "NAME")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "LASTNAME")
     private String lastname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "ADDRESS1")
     private String address1;
     @Size(max = 200)
@@ -63,6 +63,12 @@ public class Client implements Serializable {
     @Size(min = 1, max = 18)
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "ISADMIN")
+    private Integer isadmin;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
+    private Collection<Shopping> shoppingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mail")
+    private Collection<Starred> starredCollection;
 
     public Client() {
     }
@@ -71,11 +77,8 @@ public class Client implements Serializable {
         this.mail = mail;
     }
 
-    public Client(String mail, String name, String lastname, String address1, String password) {
+    public Client(String mail, String password) {
         this.mail = mail;
-        this.name = name;
-        this.lastname = lastname;
-        this.address1 = address1;
         this.password = password;
     }
 
@@ -125,6 +128,32 @@ public class Client implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getIsadmin() {
+        return isadmin;
+    }
+
+    public void setIsadmin(Integer isadmin) {
+        this.isadmin = isadmin;
+    }
+
+    @XmlTransient
+    public Collection<Shopping> getShoppingCollection() {
+        return shoppingCollection;
+    }
+
+    public void setShoppingCollection(Collection<Shopping> shoppingCollection) {
+        this.shoppingCollection = shoppingCollection;
+    }
+
+    @XmlTransient
+    public Collection<Starred> getStarredCollection() {
+        return starredCollection;
+    }
+
+    public void setStarredCollection(Collection<Starred> starredCollection) {
+        this.starredCollection = starredCollection;
     }
 
     @Override
